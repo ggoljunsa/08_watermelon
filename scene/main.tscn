@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhypcprpq0r6m"]
+
+[ext_resource type="Script" path="res://scene/main.gd" id="1_qajoh"]
+[ext_resource type="PackedScene" uid="uid://dh0dw26j2h7i5" path="res://scene/ball.tscn" id="2_dqawc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l8aet"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rssva"]
+size = Vector2(648, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u7p6c"]
+size = Vector2(19, 1161.5)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_qajoh")
+
+[node name="UI" type="CanvasLayer" parent="."]
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="UI"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+text = "adsfasd"
+horizontal_alignment = 1
+
+[node name="Barrier" type="StaticBody2D" parent="."]
+position = Vector2(324, 576)
+physics_material_override = SubResource("PhysicsMaterial_l8aet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier"]
+position = Vector2(-111, 146)
+shape = SubResource("RectangleShape2D_rssva")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Barrier"]
+position = Vector2(-336, -213)
+shape = SubResource("RectangleShape2D_u7p6c")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Barrier"]
+position = Vector2(93, -212)
+shape = SubResource("RectangleShape2D_u7p6c")
+
+[node name="Ball" parent="." instance=ExtResource("2_dqawc")]
