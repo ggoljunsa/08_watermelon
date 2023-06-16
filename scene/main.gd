@@ -19,13 +19,16 @@ func _process(delta):
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		#print("마우스 위치: ", event.position)
-		pass
+		ball_generate(rand_generate(), event.position)
 
 func ball_generate(num, pos):
 	var instance = ball_object.instantiate()
+	instance.ball_setsize(num)
 	instance.position = pos
 	add_child(instance)
 
+
+#returns random 
 func rand_generate():
 	var random_number = randi()%100 # 0 to 99
 	

@@ -7,7 +7,7 @@
 radius = 84.4808
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l8ryg"]
-radius = 58.0
+radius = 40.56
 
 [node name="Ball" type="RigidBody2D"]
 position = Vector2(175, 63)
