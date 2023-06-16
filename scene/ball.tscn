@@ -3,15 +3,21 @@
 [ext_resource type="Texture2D" uid="uid://g5e2siidf6km" path="res://res/ggoljunsa-twittercircle.png" id="1_8b1d4"]
 [ext_resource type="Script" path="res://scene/ball.gd" id="1_qoxbv"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_l8ryg"]
-radius = 58.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_qj4if"]
 radius = 84.4808
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l8ryg"]
+radius = 58.0
 
 [node name="Ball" type="RigidBody2D"]
 position = Vector2(175, 63)
 script = ExtResource("1_qoxbv")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qj4if")
+debug_color = Color(0.945098, 0, 0.603922, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_l8ryg")
@@ -31,11 +37,5 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_8b1d4")
 expand_mode = 1
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_qj4if")
-debug_color = Color(0.945098, 0, 0.603922, 0.419608)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
