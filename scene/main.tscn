@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhypcprpq0r6m"]
+[gd_scene load_steps=5 format=3 uid="uid://dhypcprpq0r6m"]
 
 [ext_resource type="Script" path="res://scene/main.gd" id="1_qajoh"]
-[ext_resource type="PackedScene" uid="uid://dh0dw26j2h7i5" path="res://scene/ball.tscn" id="2_dqawc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l8aet"]
 
@@ -41,5 +40,3 @@ shape = SubResource("RectangleShape2D_u7p6c")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Barrier"]
 position = Vector2(93, -212)
 shape = SubResource("RectangleShape2D_u7p6c")
-
-[node name="Ball" parent="." instance=ExtResource("2_dqawc")]

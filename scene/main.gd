@@ -2,7 +2,7 @@ extends Node2D
 
 var ball_object = load("res://scene/ball.tscn")
 var numbers = [0, 1, 2, 3]
-@export var probabilities = [40, 30, 20, 10]
+@export var probabilities = [45, 30, 20, 5]
 
 
 # Called when the node enters the scene tree for the first time.
@@ -19,7 +19,8 @@ func _process(delta):
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		#print("마우스 위치: ", event.position)
-		ball_generate(rand_generate(), event.position)
+		var pos = Vector2(event.position.x, 0.0)
+		ball_generate(rand_generate(), pos)
 
 func ball_generate(num, pos):
 	var instance = ball_object.instantiate()

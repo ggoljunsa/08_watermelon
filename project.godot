@@ -25,6 +25,10 @@ window/size/initial_position_type=2
 
 project/assembly_name="08_watermelon"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/jangm/OneDrive - 대구경북과학기술원/workspace/games/Godot4/08_watermelon/K-001.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-idea-board/plugin.cfg")

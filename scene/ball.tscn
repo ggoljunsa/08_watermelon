@@ -2,12 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://g5e2siidf6km" path="res://res/ggoljunsa-twittercircle.png" id="1_8b1d4"]
 [ext_resource type="Script" path="res://scene/ball.gd" id="1_qoxbv"]
+[ext_resource type="Shape2D" uid="uid://b2fdefwnlbmyg" path="res://scene/ball_collision.tres" id="2_la1c4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qj4if"]
-radius = 84.4808
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_l8ryg"]
-radius = 40.56
+radius = 49.2544
 
 [node name="Ball" type="RigidBody2D"]
 position = Vector2(175, 63)
@@ -20,7 +18,7 @@ shape = SubResource("CircleShape2D_qj4if")
 debug_color = Color(0.945098, 0, 0.603922, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_l8ryg")
+shape = ExtResource("2_la1c4")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
