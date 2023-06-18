@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g5e2siidf6km"
-path.s3tc="res://.godot/imported/ggoljunsa-twittercircle.png-b5561f2c64612f4f9d6f003115bc2677.s3tc.ctex"
+uid="uid://bysc7eggihkvv"
+path="res://.godot/imported/04_peroth.png-c8dd76b0e0e4bd132152e93f1cbf8333.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/ggoljunsa-twittercircle.png"
-dest_files=["res://.godot/imported/ggoljunsa-twittercircle.png-b5561f2c64612f4f9d6f003115bc2677.s3tc.ctex"]
+source_file="res://res/lastorigin/04_peroth.png"
+dest_files=["res://.godot/imported/04_peroth.png-c8dd76b0e0e4bd132152e93f1cbf8333.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

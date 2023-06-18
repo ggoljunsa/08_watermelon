@@ -22,7 +22,7 @@ func check_if_stopped(children):
 	
 	for child in children:
 		if speed(child.linear_velocity) > 5 or child.position.y < 300:
-			print(child.linear_velocity)
+			#print(child.linear_velocity)
 			return false
 	return true
 
@@ -31,6 +31,7 @@ func speed(linear_velocity):
 	return sqrt(linear_velocity.x*linear_velocity.x + linear_velocity.y*linear_velocity.y)
 
 func _on_main_detect_ball():
+	await get_tree().create_timer(2).timeout 
 	set_process(true)
-	print('sex')
+	#print('sex')
 	pass # Replace with function body.

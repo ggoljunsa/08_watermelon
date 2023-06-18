@@ -6,6 +6,7 @@ var numbers = [0, 1, 2, 3]
 var instance
 var throw_speed = Vector2(0, 100)
 var ball_generate_flag = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ball_generate(rand_generate(), $UI/Spot.position)
@@ -15,7 +16,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 	"""
 	if ball_generate_flag:

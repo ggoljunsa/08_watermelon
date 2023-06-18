@@ -6,7 +6,8 @@ var ball_Area
 
 
 var ball_level = 0 
-@export var ball_size = [20,25, 30, 38, 45,50, 55, 60, 65, 70, 75, 80]
+var bojungchi = 205
+@export var ball_size = [0.08*bojungchi,0.102*bojungchi, 0.155*bojungchi, 0.209*bojungchi, 0.25*bojungchi,0.3*bojungchi, 0.418*bojungchi, 0.45*bojungchi, 0.5*bojungchi, 0.55*bojungchi, 0.6*405, 0.7*bojungchi]
 @export var collision_radius = 1
 
 # Called when the node enters the scene tree for the first time.
@@ -63,7 +64,12 @@ func ball_setsize(num: int):
 	var new_area_shape = CircleShape2D.new()
 	new_area_shape.set_radius(float(ball_size[num] + collision_radius))
 	ball_Area.call_deferred("set", "shape", new_area_shape)
-
+	
+	#set the texture properities
+	$TextureRect.size = Vector2(ball_size[num]*2, ball_size[num]*2)
+	$TextureRect.position = Vector2(-ball_size[num], -ball_size[num])
+	$TextureRect.set_anchors_preset(Control.PRESET_CENTER,true)
+	$TextureRect.set_texture(load(Global.image_location[num]))
 	set_physics_process(true)
 
 	

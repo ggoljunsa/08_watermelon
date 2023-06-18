@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bcd411hymmsby"]
+
+[ext_resource type="Shader" path="res://scene/ball.gdshader" id="1_5xluo"]
+
+[resource]
+shader = ExtResource("1_5xluo")
