@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhypcprpq0r6m"]
+[gd_scene load_steps=7 format=3 uid="uid://dhypcprpq0r6m"]
 
 [ext_resource type="Script" path="res://scene/main.gd" id="1_qajoh"]
+[ext_resource type="Script" path="res://scene/object.gd" id="2_8x0f3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l8aet"]
 
@@ -9,6 +10,9 @@ size = Vector2(648, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7p6c"]
 size = Vector2(19, 1161.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8850"]
+size = Vector2(408, 22)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_qajoh")
@@ -22,8 +26,20 @@ anchor_right = 1.0
 offset_bottom = 40.0
 grow_horizontal = 2
 size_flags_horizontal = 3
-text = "adsfasd"
+text = "watermellon game"
 horizontal_alignment = 1
+
+[node name="Spot" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 193.0
+offset_top = 95.0
+offset_right = -212.0
+offset_bottom = -625.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Barrier" type="StaticBody2D" parent="."]
 position = Vector2(324, 576)
@@ -40,3 +56,20 @@ shape = SubResource("RectangleShape2D_u7p6c")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Barrier"]
 position = Vector2(93, -212)
 shape = SubResource("RectangleShape2D_u7p6c")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(202, 153)
+shape = SubResource("RectangleShape2D_c8850")
+debug_color = Color(0.541176, 0.407843, 1, 0.419608)
+
+[node name="object" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_8x0f3")
+
+[connection signal="detect_ball" from="." to="object" method="_on_main_detect_ball"]
+[connection signal="balls_stabled" from="object" to="." method="_on_object_balls_stabled"]

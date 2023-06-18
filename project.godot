@@ -37,6 +37,13 @@ enabled=PackedStringArray("res://addons/godot-idea-board/plugin.cfg")
 
 directory_path="res://addons/godot-idea-board/savedata/"
 
+[input]
+
+touch={
+"deadzone": 0.5,
+"events": []
+}
+
 [rendering]
 
 renderer/rendering_method="mobile"

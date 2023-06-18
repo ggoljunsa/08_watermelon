@@ -3,30 +3,63 @@ extends Node2D
 var ball_object = load("res://scene/ball.tscn")
 var numbers = [0, 1, 2, 3]
 @export var probabilities = [45, 30, 20, 5]
-
-
+var instance
+var throw_speed = Vector2(0, 100)
+var ball_generate_flag = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	ball_generate(rand_generate(), $UI/Spot.position)
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
 func _process(delta):
 	pass
-
-
-func _unhandled_input(event):
-	if event is InputEventMouseButton and event.pressed:
-		#print("마우스 위치: ", event.position)
-		var pos = Vector2(event.position.x, 0.0)
+	"""
+	if ball_generate_flag:
+		var pos = Vector2($UI/Spot.position)
 		ball_generate(rand_generate(), pos)
+		ball_generate_flag = false
+		await get_tree().create_timer(3).timeout
+		ball_generate_flag = true
+	"""
+
+
+
+
+var input_flag = true
+func _unhandled_input(event):
+	if input_flag:
+		if event is InputEventMouseButton and event.pressed:
+			print(event.position)
+			input_flag = false
+			#print("마우스 위치: ", event.position)
+			var pos = Vector2(event.position.x, $UI/Spot.position.y+100)
+			move_ball(pos)
+			
+signal detect_ball
+func move_ball(pos):
+	#move the ball into certain position with tween
+	var tween = instance.create_tween()
+	tween.tween_property(instance, "position", pos, 0.1)
+	await get_tree().create_timer(0.1).timeout
+	#set gravity of the ball.
+	instance.freeze = false
+	instance.get_node("Area2D").monitoring = true
+	#set the speed (
+	#instance.set_linear_velocity(throw_speed)
+	#await get_tree().create_timer(3).timeout
+	emit_signal("detect_ball")
 
 func ball_generate(num, pos):
-	var instance = ball_object.instantiate()
+	instance = ball_object.instantiate()
 	instance.ball_setsize(num)
+	instance.freeze = true
+	instance.get_node("Area2D").monitoring = false
 	instance.position = pos
-	add_child(instance)
+	$object.add_child(instance)
 
 
 #returns random 
@@ -42,3 +75,8 @@ func rand_generate():
 	else:
 		return 3
 
+
+
+func _on_object_balls_stabled():
+	ball_generate(rand_generate(), $UI/Spot.position)
+	input_flag = true

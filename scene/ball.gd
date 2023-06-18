@@ -6,7 +6,7 @@ var ball_Area
 
 
 var ball_level = 0 
-@export var ball_size = [20,25, 30, 38, 45,50, 55, 60]
+@export var ball_size = [20,25, 30, 38, 45,50, 55, 60, 65, 70, 75, 80]
 @export var collision_radius = 1
 
 # Called when the node enters the scene tree for the first time.
@@ -21,6 +21,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#print(linear_velocity)
 	pass
 
 
@@ -48,7 +49,7 @@ func merge_ball(other_ball):
 
 
 func ball_setsize(num: int):
-	print(num, 'setsize')
+	#print(num, 'setsize')
 	set_physics_process(false)
 	ball_level = num
 	ball_collision = get_node("CollisionShape2D")
