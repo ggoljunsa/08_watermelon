@@ -104,7 +104,6 @@ _data = {
 }
 
 [node name="Ball" type="RigidBody2D"]
-position = Vector2(175, 63)
 gravity_scale = 2.0
 linear_damp = 2.0
 script = ExtResource("1_qoxbv")
@@ -128,8 +127,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(50, 50)
 texture = ExtResource("6_qoyx2")
 expand_mode = 1
 

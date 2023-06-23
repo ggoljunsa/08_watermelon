@@ -8,7 +8,7 @@ var ball_Area
 
 
 var ball_level = 0 
-var bojungchi = 205
+var bojungchi = 300
 @export var ball_size = [0.08*bojungchi,0.102*bojungchi, 0.155*bojungchi, 0.209*bojungchi, 0.25*bojungchi,0.3*bojungchi, 0.418*bojungchi, 0.45*bojungchi, 0.5*bojungchi, 0.55*bojungchi, 0.6*405, 0.7*bojungchi]
 @export var collision_radius = 1
 var image_location = ["res://res/lastorigin/01_naen.png", "res://res/lastorigin/02_andvari.png", "res://res/lastorigin/03_lilith.png", "res://res/lastorigin/04_peroth.png", "res://res/lastorigin/05_may.png", "res://res/lastorigin/06_momo.png", "res://res/lastorigin/07_hamster.png"]
@@ -54,7 +54,7 @@ func speed(linear_velocity):
 	return sqrt(linear_velocity.x*linear_velocity.x + linear_velocity.y*linear_velocity.y)
 
 func merge_ball(other_ball):
-	Global.increment_score(ball_level)
+	Global.increment_score(ball_level+1)
 	set_physics_process(false)
 	position = other_ball.position   # Immediately move the other ball to this ball's position
 	other_ball.get_node("AnimationPlayer").play("anim_small")

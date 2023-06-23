@@ -91,3 +91,7 @@ func _on_object_balls_stabled():
 signal update_score
 func _on_update_score():
 	$UI/Score.text =  str(Global.score)
+
+
+func _on_game_over_area_2d_area_entered(area):
+	pass # Replace with function body.
