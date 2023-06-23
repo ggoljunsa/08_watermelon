@@ -30,6 +30,7 @@ func _process(_delta):
 
 
 
+
 var input_flag = true
 func _unhandled_input(event):
 	if input_flag:
@@ -76,8 +77,17 @@ func rand_generate():
 	else:
 		return 3
 
+#play sound
+signal merge_sound
+func play_sound():
+	$AudioStreamPlayer.play(0.0)
+	print('play')
 
 
 func _on_object_balls_stabled():
 	ball_generate(rand_generate(), $UI/Spot.position)
 	input_flag = true
+
+signal update_score
+func _on_update_score():
+	$UI/Score.text =  str(Global.score)

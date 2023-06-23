@@ -31,7 +31,7 @@ func speed(linear_velocity):
 	return sqrt(linear_velocity.x*linear_velocity.x + linear_velocity.y*linear_velocity.y)
 
 func _on_main_detect_ball():
-	await get_tree().create_timer(2).timeout 
+	await get_tree().create_timer(1).timeout 
 	set_process(true)
 	#print('sex')
 	pass # Replace with function body.
