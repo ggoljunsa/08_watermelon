@@ -19,9 +19,8 @@ func _process(delta):
 		set_process(false)
 
 func check_if_stopped(children):
-	
 	for child in children:
-		if speed(child.linear_velocity) > 8 or child.position.y < 300:
+		if speed(child.linear_velocity) > 8:
 			#print(child.linear_velocity)
 			return false
 	return true

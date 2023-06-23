@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dhypcprpq0r6m"]
+[gd_scene load_steps=18 format=3 uid="uid://dhypcprpq0r6m"]
 
 [ext_resource type="Script" path="res://scene/main.gd" id="1_qajoh"]
 [ext_resource type="Script" path="res://scene/object.gd" id="2_8x0f3"]
@@ -6,8 +6,10 @@
 [ext_resource type="Script" path="res://scene/Label.gd" id="3_hlaks"]
 [ext_resource type="Script" path="res://scene/PauseButton.gd" id="4_b1kr8"]
 [ext_resource type="AudioStream" uid="uid://bptvplu1kit7b" path="res://res/sound/ID15_snd_bubble.wav" id="4_budij"]
+[ext_resource type="PackedScene" uid="uid://rw7gdui8lu3n" path="res://addons/EasyMenus/Scenes/pause_menu.tscn" id="5_cuabr"]
 [ext_resource type="Script" path="res://scene/ResumeButton.gd" id="5_ntd4v"]
 [ext_resource type="Texture2D" uid="uid://5qx7cqyi1dmp" path="res://res/naen.jpg" id="5_plcpc"]
+[ext_resource type="Script" path="res://scene/GameOverArea2D.gd" id="7_ihoo5"]
 
 [sub_resource type="Animation" id="Animation_hlnpg"]
 length = 0.001
@@ -55,14 +57,14 @@ size = Vector2(648, 20)
 size = Vector2(19, 1161.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8850"]
-size = Vector2(408, 22)
+size = Vector2(404, 22)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_qajoh")
 
 [node name="Cafe" type="Sprite2D" parent="."]
-position = Vector2(206, 353)
-scale = Vector2(1.09841, 1.09841)
+position = Vector2(208, 360)
+scale = Vector2(1.14365, 1.14365)
 texture = ExtResource("2_ne7qr")
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -123,6 +125,10 @@ offset_bottom = 96.0
 text = "   Pause   "
 script = ExtResource("4_b1kr8")
 
+[node name="PauseMenu" parent="UI" instance=ExtResource("5_cuabr")]
+unique_name_in_owner = true
+visible = false
+
 [node name="pause_popup" type="TextureRect" parent="UI"]
 unique_name_in_owner = true
 visible = false
@@ -149,6 +155,62 @@ keep_pressed_outside = true
 text = "resume"
 script = ExtResource("5_ntd4v")
 
+[node name="result_popup" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 128.0
+offset_right = -21.0
+offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.45098, 0.45098, 0.45098, 1)
+
+[node name="GameOverLabel" type="Label" parent="UI/result_popup"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -236.0
+offset_bottom = -172.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Game Over"
+
+[node name="ScoreLabel" type="Label" parent="UI/result_popup"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 101.0
+offset_bottom = 74.0
+text = "Your Score: 0"
+
+[node name="HighScoreLabel" type="Label" parent="UI/result_popup"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 101.0
+offset_bottom = 106.0
+text = "High Score: 0"
+
+[node name="RestartButton" type="Button" parent="UI/result_popup"]
+layout_mode = 0
+offset_top = 136.0
+offset_right = 61.0
+offset_bottom = 167.0
+text = "restart"
+
+[node name="TitleButton" type="Button" parent="UI/result_popup"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 136.0
+offset_right = 133.0
+offset_bottom = 167.0
+text = "Back"
+
 [node name="Barrier" type="StaticBody2D" parent="."]
 position = Vector2(324, 576)
 physics_material_override = SubResource("PhysicsMaterial_l8aet")
@@ -165,10 +227,13 @@ shape = SubResource("RectangleShape2D_u7p6c")
 position = Vector2(93, -212)
 shape = SubResource("RectangleShape2D_u7p6c")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="GameOverArea2D" type="Area2D" parent="."]
+script = ExtResource("7_ihoo5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(202, 153)
+[node name="Timer" type="Timer" parent="GameOverArea2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea2D"]
+position = Vector2(200, 632)
 shape = SubResource("RectangleShape2D_c8850")
 debug_color = Color(0.541176, 0.407843, 1, 0.419608)
 
@@ -185,5 +250,7 @@ stream = ExtResource("4_budij")
 [connection signal="detect_ball" from="." to="object" method="_on_main_detect_ball"]
 [connection signal="merge_sound" from="." to="." method="play_sound"]
 [connection signal="update_score" from="." to="." method="_on_update_score"]
+[connection signal="back_to_main_pressed" from="UI/PauseMenu" to="." method="_on_pause_menu_back_to_main_pressed"]
 [connection signal="pressed" from="UI/pause_popup/ResumeButton" to="UI/pause_popup/ResumeButton" method="_on_pause_popup_close_pressed"]
+[connection signal="gameover" from="GameOverArea2D" to="." method="_on_game_over_area_2d_gameover"]
 [connection signal="balls_stabled" from="object" to="." method="_on_object_balls_stabled"]

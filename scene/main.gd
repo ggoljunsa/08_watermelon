@@ -41,6 +41,8 @@ func _unhandled_input(event):
 			var pos = Vector2(event.position.x, $UI/Spot.position.y+100)
 			move_ball(pos)
 			
+
+
 signal detect_ball
 func move_ball(pos):
 	#move the ball into certain position with tween
@@ -93,5 +95,11 @@ func _on_update_score():
 	$UI/Score.text =  str(Global.score)
 
 
-func _on_game_over_area_2d_area_entered(area):
-	pass # Replace with function body.
+#game over function
+func _on_game_over_area_2d_gameover():
+	%result_popup.show()
+	get_tree().paused = true
+
+
+func _on_pause_menu_back_to_main_pressed():
+	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/main_menu.tscn")

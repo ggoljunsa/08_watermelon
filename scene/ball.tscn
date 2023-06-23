@@ -104,8 +104,8 @@ _data = {
 }
 
 [node name="Ball" type="RigidBody2D"]
-gravity_scale = 2.0
-linear_damp = 2.0
+mass = 2.0
+gravity_scale = 3.0
 script = ExtResource("1_qoxbv")
 
 [node name="Merge" type="AudioStreamPlayer" parent="."]

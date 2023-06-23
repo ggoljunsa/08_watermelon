@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="08_watermelon"
-run/main_scene="res://scene/main.tscn"
+run/main_scene="res://addons/EasyMenus/Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 
