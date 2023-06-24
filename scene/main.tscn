@@ -1,14 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://dhypcprpq0r6m"]
+[gd_scene load_steps=15 format=3 uid="uid://dhypcprpq0r6m"]
 
 [ext_resource type="Script" path="res://scene/main.gd" id="1_qajoh"]
 [ext_resource type="Script" path="res://scene/object.gd" id="2_8x0f3"]
-[ext_resource type="Texture2D" uid="uid://bqwpbf2ax5r2h" path="res://res/background/cafe.jpg" id="2_ne7qr"]
 [ext_resource type="Script" path="res://scene/Label.gd" id="3_hlaks"]
 [ext_resource type="Script" path="res://scene/PauseButton.gd" id="4_b1kr8"]
 [ext_resource type="AudioStream" uid="uid://bptvplu1kit7b" path="res://res/sound/ID15_snd_bubble.wav" id="4_budij"]
 [ext_resource type="PackedScene" uid="uid://rw7gdui8lu3n" path="res://addons/EasyMenus/Scenes/pause_menu.tscn" id="5_cuabr"]
-[ext_resource type="Script" path="res://scene/ResumeButton.gd" id="5_ntd4v"]
-[ext_resource type="Texture2D" uid="uid://5qx7cqyi1dmp" path="res://res/naen.jpg" id="5_plcpc"]
 [ext_resource type="Script" path="res://scene/GameOverArea2D.gd" id="7_ihoo5"]
 
 [sub_resource type="Animation" id="Animation_hlnpg"]
@@ -65,38 +62,48 @@ script = ExtResource("1_qajoh")
 [node name="Cafe" type="Sprite2D" parent="."]
 position = Vector2(208, 360)
 scale = Vector2(1.14365, 1.14365)
-texture = ExtResource("2_ne7qr")
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="Label_game" type="Label" parent="UI"]
-anchors_preset = 10
+[node name="UpperboxControl" type="Control" parent="UI"]
+layout_mode = 3
+anchor_right = 1.007
+anchor_bottom = 0.089
+offset_right = 0.164978
+offset_bottom = -0.0800018
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UpperboxControl"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
-offset_top = 8.0
-offset_bottom = 48.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label_game" type="Label" parent="UI/UpperboxControl/HBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 text = "watermellon game"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="UI"]
-offset_left = 129.0
-offset_top = 75.0
-offset_right = 190.0
-offset_bottom = 101.0
-grow_horizontal = 2
-pivot_offset = Vector2(30.018, 13.476)
+[node name="Label" type="Label" parent="UI/UpperboxControl/HBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 text = "Score: 0"
 horizontal_alignment = 1
 script = ExtResource("3_hlaks")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Label"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/UpperboxControl/HBoxContainer/Label"]
 libraries = {
 "": SubResource("AnimationLibrary_lst0k")
 }
+
+[node name="PauseButton" type="Button" parent="UI/UpperboxControl/HBoxContainer"]
+layout_mode = 2
+text = "   Pause   "
+script = ExtResource("4_b1kr8")
 
 [node name="CenterContainer" type="CenterContainer" parent="UI"]
 offset_left = 160.0
@@ -117,46 +124,11 @@ offset_bottom = -625.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PauseButton" type="Button" parent="UI"]
-offset_left = 296.0
-offset_top = 88.0
-offset_right = 304.0
-offset_bottom = 96.0
-text = "   Pause   "
-script = ExtResource("4_b1kr8")
-
 [node name="PauseMenu" parent="UI" instance=ExtResource("5_cuabr")]
 unique_name_in_owner = true
 visible = false
 
-[node name="pause_popup" type="TextureRect" parent="UI"]
-unique_name_in_owner = true
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 104.0
-offset_right = -37.0
-offset_bottom = -320.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("5_plcpc")
-expand_mode = 1
-
-[node name="ResumeButton" type="Button" parent="UI/pause_popup"]
-layout_mode = 0
-offset_left = 104.0
-offset_top = 256.0
-offset_right = 232.0
-offset_bottom = 287.0
-keep_pressed_outside = true
-text = "resume"
-script = ExtResource("5_ntd4v")
-
 [node name="result_popup" type="ColorRect" parent="UI"]
-unique_name_in_owner = true
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -233,9 +205,15 @@ script = ExtResource("7_ihoo5")
 [node name="Timer" type="Timer" parent="GameOverArea2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea2D"]
-position = Vector2(200, 632)
+position = Vector2(200, 136)
 shape = SubResource("RectangleShape2D_c8850")
 debug_color = Color(0.541176, 0.407843, 1, 0.419608)
+
+[node name="Line2D" type="Line2D" parent="GameOverArea2D/CollisionShape2D"]
+position = Vector2(0, -8)
+points = PackedVector2Array(-200, 16, 200, 16)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
 
 [node name="object" type="Control" parent="."]
 layout_mode = 3
@@ -251,6 +229,5 @@ stream = ExtResource("4_budij")
 [connection signal="merge_sound" from="." to="." method="play_sound"]
 [connection signal="update_score" from="." to="." method="_on_update_score"]
 [connection signal="back_to_main_pressed" from="UI/PauseMenu" to="." method="_on_pause_menu_back_to_main_pressed"]
-[connection signal="pressed" from="UI/pause_popup/ResumeButton" to="UI/pause_popup/ResumeButton" method="_on_pause_popup_close_pressed"]
 [connection signal="gameover" from="GameOverArea2D" to="." method="_on_game_over_area_2d_gameover"]
 [connection signal="balls_stabled" from="object" to="." method="_on_object_balls_stabled"]

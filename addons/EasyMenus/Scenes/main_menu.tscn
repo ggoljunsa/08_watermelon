@@ -90,5 +90,5 @@ layout_mode = 1
 [connection signal="pressed" from="Content/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="Content/OptionsButton" to="." method="open_options"]
 [connection signal="pressed" from="Content/QuitButton" to="." method="quit"]
-[connection signal="pressed" from="Content/SupportButton" to="." method="quit"]
+[connection signal="pressed" from="Content/SupportButton" to="." method="_on_support_button_pressed"]
 [connection signal="close" from="OptionsMenu" to="." method="close_options"]

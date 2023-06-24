@@ -30,3 +30,8 @@ func _on_start_game_button_pressed():
 func _on_start_game_pressed():
 	get_tree().change_scene_to_file(main_path)
 
+
+
+func _on_support_button_pressed():
+	OS.shell_open("https://ggoljunsa.notion.site/51e8b4a54d044903b695adacbf9ea168?v=f8d9fa5319a2476b84f4fe9453ee958d")
+

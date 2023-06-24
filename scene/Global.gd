@@ -1,6 +1,7 @@
 extends Node
-var image_location = []
+@export_dir var image_location: String = "res://res/lastorigin"
 var image_var = []
+
 signal score_changed(new_score)
 var score : int = 0:
 	get:
@@ -22,34 +23,33 @@ func reset_score():
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	var dir = DirAccess.open("user://res/lastorigin")
-	
-	if dir:  # If the directory exists
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		
-		while file_name != "":
-			if dir.current_is_dir():
-				# Skip directories
-				file_name = dir.get_next()
-				continue
-			
-			# Only consider .png files
-			if file_name.get_extension().to_lower() == "png":
-				image_location.append("res://res/lastorigin/" + file_name)
-			file_name = dir.get_next()
-
-	else:
-		print("An error occurred when trying to access the path.")
-	
-	print(image_location)
-	for path in image_location:
-		image_var.append(load(path))
+func _ready() -> void:
+	image_var = load_imports_at(image_location, "png")
+	# test:
 	print(image_var)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
-
+func load_imports_at(path: String, filter: String = "") -> Array:
+	if not DirAccess.dir_exists_absolute(path):
+		push_error("Invalid path '%s'" % path)
+		return Array()
+		
+	if not path.ends_with("/"):
+		path += "/"
+		
+	if filter != "" and not filter.begins_with("."):
+		filter = "." + filter
+		
+	var loaded_files: Array = Array()
+	for filename in DirAccess.get_files_at(path):
+		for suffix in [".import", ".remap"]:
+			if not filename.ends_with(filter + suffix):
+				continue
+			var full_path: String = path + filename.trim_suffix(suffix)
+			var file: Resource = load(full_path)
+			if file == null:
+				push_error("Error while loading file '%s'" % full_path)
+				continue
+			loaded_files.append(file)
+		
+	return loaded_files

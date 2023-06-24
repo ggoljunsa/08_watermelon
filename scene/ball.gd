@@ -86,7 +86,7 @@ func ball_setsize(num: int):
 	$TextureRect.size = Vector2(ball_size[num]*2, ball_size[num]*2)
 	$TextureRect.position = Vector2(-ball_size[num], -ball_size[num])
 	$TextureRect.set_anchors_preset(Control.PRESET_CENTER,true)
-	$TextureRect.set_texture(load(image_location[num]))
+	$TextureRect.set_texture(Global.image_var[num])
 	set_physics_process(true)
 
 	
