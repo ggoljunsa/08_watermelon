@@ -79,7 +79,7 @@ focus_neighbor_bottom = NodePath("../StartGameButton")
 focus_next = NodePath("../StartGameButton")
 focus_previous = NodePath("../OptionsButton")
 theme_override_font_sizes/font_size = 30
-text = "Support(개발자 밥사주기)"
+text = "Support"
 
 [node name="OptionsMenu" parent="." instance=ExtResource("2_pwqpr")]
 unique_name_in_owner = true

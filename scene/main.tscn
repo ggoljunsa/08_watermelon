@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dhypcprpq0r6m"]
+[gd_scene load_steps=16 format=3 uid="uid://dhypcprpq0r6m"]
 
 [ext_resource type="Script" path="res://scene/main.gd" id="1_qajoh"]
+[ext_resource type="Texture2D" uid="uid://bqwpbf2ax5r2h" path="res://res/background/cafe.jpg" id="2_6qpn2"]
 [ext_resource type="Script" path="res://scene/object.gd" id="2_8x0f3"]
 [ext_resource type="Script" path="res://scene/Label.gd" id="3_hlaks"]
 [ext_resource type="Script" path="res://scene/PauseButton.gd" id="4_b1kr8"]
@@ -62,6 +63,7 @@ script = ExtResource("1_qajoh")
 [node name="Cafe" type="Sprite2D" parent="."]
 position = Vector2(208, 360)
 scale = Vector2(1.14365, 1.14365)
+texture = ExtResource("2_6qpn2")
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3

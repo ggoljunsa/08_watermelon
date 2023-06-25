@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0cthlmaq70oc"
-path="res://.godot/imported/01_naen.png-80cf2b3f898f984713fed645d9dde2a4.ctex"
+uid="uid://bhtgsvb4s08yl"
+path="res://.godot/imported/01_naen.jpg-5c5c90025e440a3125c201ca68ee210c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/lastorigin/01_naen.png"
-dest_files=["res://.godot/imported/01_naen.png-80cf2b3f898f984713fed645d9dde2a4.ctex"]
+source_file="res://res/lastorigin/01_naen.jpg"
+dest_files=["res://.godot/imported/01_naen.jpg-5c5c90025e440a3125c201ca68ee210c.ctex"]
 
 [params]
 

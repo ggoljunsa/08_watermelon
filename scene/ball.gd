@@ -18,6 +18,11 @@ signal score_update
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#set angular damp
+	set_angular_damp_mode(1)
+	set_angular_damp(20)
+	
+	
 	ball_collision = get_node("CollisionShape2D")
 	#print($CollisionShape2D.shape.get_radius())
 	ball_texture = $TextureRect
@@ -34,21 +39,25 @@ func _process(delta):
 
 func _on_area_2d_area_entered(area):
 	if area.get_parent() is RigidBody2D:
-		var other_ball = area.get_parent() #other ball will be the slow one, which gets bigger
-		if other_ball.ball_level == ball_level:
-			if speed(linear_velocity) > speed(other_ball.linear_velocity):
-				$Merge.play()
-				await get_tree().create_timer(0.05).timeout
-				#set_physics_process(false)
-				merge_ball(other_ball)
-				#
-				#set_physics_process(true)
-				
-			else:
-				print('hello')
-				$Merge.play()
-				await get_tree().create_timer(0.05).timeout
-				#await get_tree().create_timer(0.1).timeout
+		var other_ball = area.get_parent() 
+		if other_ball != null:
+			#other ball will be the slow one, which gets bigger
+			if other_ball.ball_level == ball_level:
+				if speed(linear_velocity) > speed(other_ball.linear_velocity):
+					$Merge.play()
+					await get_tree().create_timer(0.05).timeout
+					#set_physics_process(false)
+					merge_ball(other_ball)
+					#
+					#set_physics_process(true)
+					
+				else:
+					print('hello')
+					$Merge.play()
+					await get_tree().create_timer(0.05).timeout
+					#await get_tree().create_timer(0.1).timeout
+		else:
+			print("error: other ball null error")
 
 func speed(linear_velocity):
 	return sqrt(linear_velocity.x*linear_velocity.x + linear_velocity.y*linear_velocity.y)
@@ -87,6 +96,11 @@ func ball_setsize(num: int):
 	$TextureRect.position = Vector2(-ball_size[num], -ball_size[num])
 	$TextureRect.set_anchors_preset(Control.PRESET_CENTER,true)
 	$TextureRect.set_texture(Global.image_var[num])
+	
+	#set physics, gravity, mass elements
+	set_mass(ball_size[num]*10)
+	print(get_mass(), ": ball mass")
 	set_physics_process(true)
+
 
 	
