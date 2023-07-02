@@ -76,11 +76,11 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="OptionsMenu" parent="." instance=ExtResource("2_ejh0f")]
-unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
 [node name="ToggleMenu" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 anchors_preset = 0
 anchor_top = 0.571
@@ -88,22 +88,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -0.120026
 script = ExtResource("3_i2d0v")
+checkBox_text = ["Basic LastOrigin", "피지컬게임 스킨", "엘븐 스킨", "만메 스킨", null, null, null, null, null]
 
 [node name="Panel" type="Panel" parent="ToggleMenu"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 309.0
 grow_horizontal = 2
 
-[node name="CheckBox" type="CheckBox" parent="ToggleMenu"]
+[node name="Content2" type="VBoxContainer" parent="ToggleMenu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CheckBox" type="CheckBox" parent="ToggleMenu/Content2"]
 layout_mode = 2
-offset_top = 15.0
-offset_right = 405.0
-offset_bottom = 46.0
-text = "Basic Lastorigin Skin"
+text = "PhysicalGame Skin"
+
+[node name="CheckBox2" type="CheckBox" parent="ToggleMenu/Content2"]
+layout_mode = 2
+text = "Wehihi Skin"
+
+[node name="CheckBox3" type="CheckBox" parent="ToggleMenu/Content2"]
+layout_mode = 2
+text = "Manmae Skin"
+
+[node name="CheckBox4" type="CheckBox" parent="ToggleMenu/Content2"]
+layout_mode = 2
+text = "만메 스킨"
 
 [connection signal="pressed" from="Content/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
 [connection signal="pressed" from="Content/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Content/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="Content/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="close" from="OptionsMenu" to="." method="_on_options_menu_close"]
+[connection signal="pressed" from="ToggleMenu/Content2/CheckBox" to="ToggleMenu" method="_on_check_box_pressed" binds= [0]]
+[connection signal="pressed" from="ToggleMenu/Content2/CheckBox2" to="ToggleMenu" method="_on_check_box_pressed" binds= [1]]
+[connection signal="pressed" from="ToggleMenu/Content2/CheckBox3" to="ToggleMenu" method="_on_check_box_pressed" binds= [2]]
+[connection signal="pressed" from="ToggleMenu/Content2/CheckBox4" to="ToggleMenu" method="_on_check_box_pressed" binds= [3]]

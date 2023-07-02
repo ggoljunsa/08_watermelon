@@ -3,6 +3,7 @@ extends Control
 signal balls_stabled
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	set_process(false)
 	pass # Replace with function body.
 
@@ -14,7 +15,7 @@ func _process(delta):
 	children = get_children()
 	#print(children)
 	if check_if_stopped(children):
-		print('stop')
+		#print('stop')
 		emit_signal("balls_stabled")
 		set_process(false)
 
@@ -34,3 +35,8 @@ func _on_main_detect_ball():
 	set_process(true)
 	#print('sex')
 	pass # Replace with function body.
+
+func change_child_skin():
+	var children_ball = get_children()
+	for balls in children_ball:
+		balls.change_texture()

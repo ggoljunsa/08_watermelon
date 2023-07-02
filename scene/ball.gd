@@ -11,7 +11,6 @@ var ball_level = 0
 var bojungchi = 300
 @export var ball_size = [0.08*bojungchi,0.102*bojungchi, 0.155*bojungchi, 0.209*bojungchi, 0.25*bojungchi,0.3*bojungchi, 0.418*bojungchi, 0.45*bojungchi, 0.5*bojungchi, 0.55*bojungchi, 0.6*405, 0.7*bojungchi]
 @export var collision_radius = 1
-var image_location = ["res://res/lastorigin/01_naen.png", "res://res/lastorigin/02_andvari.png", "res://res/lastorigin/03_lilith.png", "res://res/lastorigin/04_peroth.png", "res://res/lastorigin/05_may.png", "res://res/lastorigin/06_momo.png", "res://res/lastorigin/07_hamster.png"]
 
 #signal for scoring system
 signal score_update
@@ -52,7 +51,7 @@ func _on_area_2d_area_entered(area):
 					#set_physics_process(true)
 					
 				else:
-					print('hello')
+					#print('hello')
 					$Merge.play()
 					await get_tree().create_timer(0.05).timeout
 					#await get_tree().create_timer(0.1).timeout
@@ -63,13 +62,14 @@ func speed(linear_velocity):
 	return sqrt(linear_velocity.x*linear_velocity.x + linear_velocity.y*linear_velocity.y)
 
 func merge_ball(other_ball):
-	Global.increment_score(ball_level+1)
-	set_physics_process(false)
-	position = other_ball.position   # Immediately move the other ball to this ball's position
-	other_ball.get_node("AnimationPlayer").play("anim_small")
-	other_ball.ball_setsize(ball_level + 1)  # Increase the level and update the size
-	other_ball.get_node("AnimationPlayer").play("anim_big")
-	queue_free()
+	if other_ball != null:
+		Global.increment_score(ball_level+1)
+		set_physics_process(false)
+		position = other_ball.position   # Immediately move the other ball to this ball's position
+		other_ball.get_node("AnimationPlayer").play("anim_small")
+		other_ball.ball_setsize(ball_level + 1)  # Increase the level and update the size
+		other_ball.get_node("AnimationPlayer").play("anim_big")
+		queue_free()
 
 
 
@@ -90,17 +90,18 @@ func ball_setsize(num: int):
 	var new_area_shape = CircleShape2D.new()
 	new_area_shape.set_radius(float(ball_size[num] + collision_radius))
 	ball_Area.call_deferred("set", "shape", new_area_shape)
-	
-	#set the texture properities
-	$TextureRect.size = Vector2(ball_size[num]*2, ball_size[num]*2)
-	$TextureRect.position = Vector2(-ball_size[num], -ball_size[num])
-	$TextureRect.set_anchors_preset(Control.PRESET_CENTER,true)
-	$TextureRect.set_texture(Global.image_var[num])
+	change_texture()
+
 	
 	#set physics, gravity, mass elements
 	set_mass(ball_size[num]*10)
 	print(get_mass(), ": ball mass")
 	set_physics_process(true)
 
-
+func change_texture():
+	#set the texture properities
+	$TextureRect.size = Vector2(ball_size[ball_level]*2, ball_size[ball_level]*2)
+	$TextureRect.position = Vector2(-ball_size[ball_level], -ball_size[ball_level])
+	$TextureRect.set_anchors_preset(Control.PRESET_CENTER,true)
+	$TextureRect.set_texture(Global.image_var[Global.skin_num][ball_level])
 	

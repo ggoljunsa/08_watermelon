@@ -44,3 +44,4 @@ func _input(event):
 	if (event.is_action_pressed("ui_cancel") or event.is_action_pressed("pause")) and visible and !options_menu.visible:
 		accept_event()
 		close_pause_menu()
+

@@ -1,13 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://dhypcprpq0r6m"]
+[gd_scene load_steps=19 format=3 uid="uid://dhypcprpq0r6m"]
 
 [ext_resource type="Script" path="res://scene/main.gd" id="1_qajoh"]
 [ext_resource type="Texture2D" uid="uid://bqwpbf2ax5r2h" path="res://res/background/cafe.jpg" id="2_6qpn2"]
 [ext_resource type="Script" path="res://scene/object.gd" id="2_8x0f3"]
+[ext_resource type="Shader" path="res://scene/background.gdshader" id="2_my1gd"]
 [ext_resource type="Script" path="res://scene/Label.gd" id="3_hlaks"]
 [ext_resource type="Script" path="res://scene/PauseButton.gd" id="4_b1kr8"]
 [ext_resource type="AudioStream" uid="uid://bptvplu1kit7b" path="res://res/sound/ID15_snd_bubble.wav" id="4_budij"]
 [ext_resource type="PackedScene" uid="uid://rw7gdui8lu3n" path="res://addons/EasyMenus/Scenes/pause_menu.tscn" id="5_cuabr"]
+[ext_resource type="PackedScene" uid="uid://cpg6qo6jbi8eh" path="res://addons/EasyMenus/Scenes/gameover_menu.tscn" id="6_ev7k4"]
 [ext_resource type="Script" path="res://scene/GameOverArea2D.gd" id="7_ihoo5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kxnno"]
+shader = ExtResource("2_my1gd")
+shader_parameter/size = 1.0
 
 [sub_resource type="Animation" id="Animation_hlnpg"]
 length = 0.001
@@ -60,8 +66,12 @@ size = Vector2(404, 22)
 [node name="main" type="Node2D"]
 script = ExtResource("1_qajoh")
 
-[node name="Cafe" type="Sprite2D" parent="."]
-position = Vector2(208, 360)
+[node name="Cafe" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_kxnno")
+offset_left = -472.0
+offset_top = -8.0
+offset_right = 728.0
+offset_bottom = 622.0
 scale = Vector2(1.14365, 1.14365)
 texture = ExtResource("2_6qpn2")
 
@@ -130,60 +140,9 @@ grow_vertical = 2
 unique_name_in_owner = true
 visible = false
 
-[node name="result_popup" type="ColorRect" parent="UI"]
+[node name="GameoverMenu" parent="UI" instance=ExtResource("6_ev7k4")]
+unique_name_in_owner = true
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = 128.0
-offset_right = -21.0
-offset_bottom = -104.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.45098, 0.45098, 0.45098, 1)
-
-[node name="GameOverLabel" type="Label" parent="UI/result_popup"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -236.0
-offset_bottom = -172.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Game Over"
-
-[node name="ScoreLabel" type="Label" parent="UI/result_popup"]
-layout_mode = 0
-offset_top = 48.0
-offset_right = 101.0
-offset_bottom = 74.0
-text = "Your Score: 0"
-
-[node name="HighScoreLabel" type="Label" parent="UI/result_popup"]
-layout_mode = 0
-offset_top = 80.0
-offset_right = 101.0
-offset_bottom = 106.0
-text = "High Score: 0"
-
-[node name="RestartButton" type="Button" parent="UI/result_popup"]
-layout_mode = 0
-offset_top = 136.0
-offset_right = 61.0
-offset_bottom = 167.0
-text = "restart"
-
-[node name="TitleButton" type="Button" parent="UI/result_popup"]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 136.0
-offset_right = 133.0
-offset_bottom = 167.0
-text = "Back"
 
 [node name="Barrier" type="StaticBody2D" parent="."]
 position = Vector2(324, 576)
@@ -207,7 +166,7 @@ script = ExtResource("7_ihoo5")
 [node name="Timer" type="Timer" parent="GameOverArea2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea2D"]
-position = Vector2(200, 136)
+position = Vector2(200, 392)
 shape = SubResource("RectangleShape2D_c8850")
 debug_color = Color(0.541176, 0.407843, 1, 0.419608)
 

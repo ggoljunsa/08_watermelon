@@ -10,8 +10,13 @@ var ball_generate_flag = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ball_generate(rand_generate(), $UI/Spot.position)
+	var togglemenu_node = get_node("UI/PauseMenu/ToggleMenu")
+	#print("togglemenu_node", togglemenu_node)
+	togglemenu_node.connect("skin_changed", change_skin)
 
-
+func change_skin():
+	print("main_change_skin")
+	$object.change_child_skin()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -35,7 +40,7 @@ var input_flag = true
 func _unhandled_input(event):
 	if input_flag:
 		if event is InputEventMouseButton and event.pressed:
-			print(event.position)
+			#print(event.position)
 			input_flag = false
 			#print("마우스 위치: ", event.position)
 			var pos = Vector2(event.position.x, $UI/Spot.position.y+100)
@@ -97,8 +102,10 @@ func _on_update_score():
 
 #game over function
 func _on_game_over_area_2d_gameover():
-	%result_popup.show()
+	$UI/GameoverMenu.show()
+	$UI/GameoverMenu.set_result_screen()
 	get_tree().paused = true
+	
 
 
 func _on_pause_menu_back_to_main_pressed():

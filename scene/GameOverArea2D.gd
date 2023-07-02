@@ -29,3 +29,4 @@ func _on_timer_timeout():
 	if body_in_area:
 		print('game over!')
 		emit_signal("gameover")
+

@@ -5,4 +5,4 @@ func _ready():
 
 func _on_PauseButton_pressed():
 	%PauseMenu.open_pause_menu()
-	print("paused pressed")
+	#print("paused pressed")

@@ -1,5 +1,10 @@
 extends Node
 @export_dir var image_location: String = "res://res/lastorigin"
+var img_location = ["res://res/lastorigin",
+					"res://res/physicalGame",
+					"res://res/elven",
+					"res://res/manmae"
+					]
 var image_var = []
 
 signal score_changed(new_score)
@@ -11,6 +16,8 @@ var score : int = 0:
 		score = val
 		emit_signal("score_changed", score)
 
+var highscore = 0
+var skin_num = 0
 
 func _init():
 	score = 0
@@ -24,7 +31,8 @@ func reset_score():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	image_var = load_imports_at(image_location, "png")
+	for location in img_location:
+		image_var.append(load_imports_at(location, "png"))
 	# test:
 	print(image_var)
 
@@ -53,3 +61,7 @@ func load_imports_at(path: String, filter: String = "") -> Array:
 			loaded_files.append(file)
 		
 	return loaded_files
+
+func set_skin(num):
+	skin_num = num
+	print(skin_num)
