@@ -5,7 +5,9 @@ signal back_to_main_pressed
 @onready var content : VBoxContainer = $%Content
 @onready var options_menu : Control = $%OptionsMenu
 @onready var resume_game_button: Button = $%ResumeGameButton
-	
+#for my custom options
+@onready var toggle_menu : Control = $%ToggleMenu
+
 func open_pause_menu():
 	#Stops game and shows pause menu
 	get_tree().paused = true
@@ -45,3 +47,15 @@ func _input(event):
 		accept_event()
 		close_pause_menu()
 
+
+
+func _on_toggle_button_pressed():
+	content.hide()
+	toggle_menu.show()
+	#toggle_menu.on_open()
+
+
+func _on_toggle_menu_close():
+	toggle_menu.hide()
+	content.show()
+	toggle_menu.grab_focus()

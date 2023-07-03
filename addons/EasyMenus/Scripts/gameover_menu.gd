@@ -1,6 +1,10 @@
 extends Control
-
-
+signal resume
+signal back_to_main_pressed
+signal restart_game_pressed
+@onready var content : VBoxContainer = $%Content
+@onready var options_menu : Control = $%OptionsMenu
+@onready var retry_game_button: Button = $%RetryGameButton
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -16,18 +20,37 @@ func set_result_screen():
 
 
 func _on_retry_game_button_pressed():
+	close_gameover_menu()
+	emit_signal("restart_game_pressed")
 	pass # Replace with function body.
 
 
 func _on_options_button_pressed():
-	pass # Replace with function body.
+	content.hide()
+	options_menu.show()
+	options_menu.on_open()
 
 
 func _on_quit_button_pressed():
-	
-	pass # Replace with function body.
+	get_tree().quit()
 
+func close_gameover_menu():
+	get_tree().paused = false
+	hide()
+	emit_signal("resume")
 
 func _on_back_to_menu_button_pressed():
-	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/main_menu.tscn")
+	print("back_to_main")
+	close_gameover_menu()
+	emit_signal("back_to_main_pressed")
 	pass # Replace with function body.
+
+
+func _on_restart_game_pressed():
+	get_tree().change_scene_to_file(Global.main_path)
+
+
+func _on_options_menu_close():
+	options_menu.hide()
+	content.show()
+	retry_game_button.grab_focus()

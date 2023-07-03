@@ -4,7 +4,7 @@ signal start_game_pressed
 @onready var start_game_button: Button = $%StartGameButton
 @onready var options_menu: Control = $%OptionsMenu
 @onready var content: Control = $%Content 
-@export var main_path: String = "res://scene/main.tscn"
+
 
 func _ready():
 	start_game_button.grab_focus()
@@ -28,7 +28,7 @@ func _on_start_game_button_pressed():
 
 
 func _on_start_game_pressed():
-	get_tree().change_scene_to_file(main_path)
+	get_tree().change_scene_to_file(Global.main_path)
 
 
 

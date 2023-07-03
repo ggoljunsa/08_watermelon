@@ -163,10 +163,8 @@ shape = SubResource("RectangleShape2D_u7p6c")
 [node name="GameOverArea2D" type="Area2D" parent="."]
 script = ExtResource("7_ihoo5")
 
-[node name="Timer" type="Timer" parent="GameOverArea2D"]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea2D"]
-position = Vector2(200, 392)
+position = Vector2(200, 624)
 shape = SubResource("RectangleShape2D_c8850")
 debug_color = Color(0.541176, 0.407843, 1, 0.419608)
 
@@ -190,5 +188,6 @@ stream = ExtResource("4_budij")
 [connection signal="merge_sound" from="." to="." method="play_sound"]
 [connection signal="update_score" from="." to="." method="_on_update_score"]
 [connection signal="back_to_main_pressed" from="UI/PauseMenu" to="." method="_on_pause_menu_back_to_main_pressed"]
+[connection signal="back_to_main_pressed" from="UI/GameoverMenu" to="." method="_on_gameover_menu_back_to_main_pressed"]
 [connection signal="gameover" from="GameOverArea2D" to="." method="_on_game_over_area_2d_gameover"]
 [connection signal="balls_stabled" from="object" to="." method="_on_object_balls_stabled"]

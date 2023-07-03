@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://rw7gdui8lu3n"]
+[gd_scene load_steps=9 format=3 uid="uid://rw7gdui8lu3n"]
 
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/pause_menu_controller.gd" id="1_5etq0"]
 [ext_resource type="PackedScene" uid="uid://qlskttl1wjr7" path="res://addons/EasyMenus/Scenes/options_menu.tscn" id="2_ejh0f"]
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/ToggleMenu.gd" id="3_i2d0v"]
+[ext_resource type="Texture2D" uid="uid://crkc00cry84bl" path="res://res/icon/lastorigin_icon.jpg" id="4_6y4v8"]
+[ext_resource type="Texture2D" uid="uid://dyj1knj6lxtjb" path="res://res/icon/icon_physicalgame.jpg" id="4_wctax"]
+[ext_resource type="Texture2D" uid="uid://sdkin63g6tms" path="res://res/icon/icon_manmae.jpg" id="5_hxdcd"]
+[ext_resource type="Texture2D" uid="uid://dnl4hlitm8es4" path="res://res/icon/icon_elven.jpg" id="6_jn4j3"]
+[ext_resource type="Script" path="res://addons/EasyMenus/Scenes/ItemList.gd" id="7_r35mf"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -57,6 +62,13 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 text = "Options"
 
+[node name="ToggleButton" type="Button" parent="Content"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Choose skin"
+
 [node name="BackToMenuButton" type="Button" parent="Content"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
@@ -76,17 +88,19 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="OptionsMenu" parent="." instance=ExtResource("2_ejh0f")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
 [node name="ToggleMenu" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 anchors_preset = 0
-anchor_top = 0.571
+anchor_left = 0.02
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -0.120026
+offset_left = -8.1
 script = ExtResource("3_i2d0v")
 checkBox_text = ["Basic LastOrigin", "피지컬게임 스킨", "엘븐 스킨", "만메 스킨", null, null, null, null, null]
 
@@ -94,10 +108,11 @@ checkBox_text = ["Basic LastOrigin", "피지컬게임 스킨", "엘븐 스킨", 
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 309.0
+offset_bottom = 720.0
 grow_horizontal = 2
 
 [node name="Content2" type="VBoxContainer" parent="ToggleMenu"]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -118,12 +133,56 @@ text = "Manmae Skin"
 layout_mode = 2
 text = "만메 스킨"
 
+[node name="VBoxContainer" type="VBoxContainer" parent="ToggleMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.007
+anchor_bottom = 1.0
+offset_right = 0.164978
+
+[node name="Label" type="Label" parent="ToggleMenu/VBoxContainer"]
+layout_mode = 2
+text = "Choose your skin"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ToggleMenu/VBoxContainer"]
+layout_mode = 2
+text = "Coin: 100 coins"
+horizontal_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="ToggleMenu/VBoxContainer"]
+layout_mode = 2
+item_count = 4
+item_0/text = "기본 라스트오리진 캐릭터들이 나온 스킨"
+item_0/icon = ExtResource("4_6y4v8")
+item_1/text = "100 코인 메이를 좋아하는 누군가의 스킨"
+item_1/icon = ExtResource("4_wctax")
+item_2/text = "100코인 찌그러진 린티킨를 위한 스킨"
+item_2/icon = ExtResource("5_hxdcd")
+item_3/text = "100코인 엘븐목장에서 얻을 수 있는 스킨"
+item_3/icon = ExtResource("6_jn4j3")
+script = ExtResource("7_r35mf")
+
+[node name="BackButton" type="Button" parent="ToggleMenu/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 25
+text = "Back"
+
 [connection signal="pressed" from="Content/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
 [connection signal="pressed" from="Content/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Content/ToggleButton" to="." method="_on_toggle_button_pressed"]
 [connection signal="pressed" from="Content/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="Content/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="close" from="OptionsMenu" to="." method="_on_options_menu_close"]
+[connection signal="close" from="ToggleMenu" to="." method="_on_toggle_menu_close"]
 [connection signal="pressed" from="ToggleMenu/Content2/CheckBox" to="ToggleMenu" method="_on_check_box_pressed" binds= [0]]
 [connection signal="pressed" from="ToggleMenu/Content2/CheckBox2" to="ToggleMenu" method="_on_check_box_pressed" binds= [1]]
 [connection signal="pressed" from="ToggleMenu/Content2/CheckBox3" to="ToggleMenu" method="_on_check_box_pressed" binds= [2]]
 [connection signal="pressed" from="ToggleMenu/Content2/CheckBox4" to="ToggleMenu" method="_on_check_box_pressed" binds= [3]]
+[connection signal="item_activated" from="ToggleMenu/VBoxContainer/ItemList" to="ToggleMenu" method="_on_item_list_item_activated"]
+[connection signal="item_clicked" from="ToggleMenu/VBoxContainer/ItemList" to="ToggleMenu" method="_on_item_list_item_clicked"]
+[connection signal="item_selected" from="ToggleMenu/VBoxContainer/ItemList" to="ToggleMenu" method="_on_item_list_item_selected"]
+[connection signal="pressed" from="ToggleMenu/VBoxContainer/BackButton" to="ToggleMenu" method="go_back"]

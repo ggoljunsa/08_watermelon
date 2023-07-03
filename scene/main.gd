@@ -92,6 +92,8 @@ func play_sound():
 
 
 func _on_object_balls_stabled():
+	#after the ball is stabled, we must check it's gameover or not
+	$GameOverArea2D.checkGameover()
 	ball_generate(rand_generate(), $UI/Spot.position)
 	input_flag = true
 
@@ -109,4 +111,8 @@ func _on_game_over_area_2d_gameover():
 
 
 func _on_pause_menu_back_to_main_pressed():
+	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/main_menu.tscn")
+
+
+func _on_gameover_menu_back_to_main_pressed():
 	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/main_menu.tscn")

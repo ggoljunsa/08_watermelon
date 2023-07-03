@@ -6,7 +6,7 @@ var img_location = ["res://res/lastorigin",
 					"res://res/manmae"
 					]
 var image_var = []
-
+@export var main_path: String = "res://scene/main.tscn"
 signal score_changed(new_score)
 var score : int = 0:
 	get:
