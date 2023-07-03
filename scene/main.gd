@@ -121,4 +121,4 @@ func _on_gameover_menu_back_to_main_pressed():
 	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/main_menu.tscn")
 
 func cal_coin_socre(num):
-	return int(num/10)*10
+	return int(num/10)

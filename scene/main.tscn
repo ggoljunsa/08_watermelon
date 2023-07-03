@@ -71,7 +71,7 @@ material = SubResource("ShaderMaterial_kxnno")
 offset_left = -472.0
 offset_top = -8.0
 offset_right = 728.0
-offset_bottom = 622.0
+offset_bottom = 650.0
 scale = Vector2(1.14365, 1.14365)
 texture = ExtResource("2_6qpn2")
 
@@ -161,7 +161,7 @@ position = Vector2(93, -212)
 shape = SubResource("RectangleShape2D_u7p6c")
 
 [node name="GameOverArea2D" type="Area2D" parent="."]
-position = Vector2(0, -280)
+position = Vector2(0, -480)
 script = ExtResource("7_ihoo5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea2D"]

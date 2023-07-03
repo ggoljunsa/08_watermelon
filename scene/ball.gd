@@ -103,5 +103,6 @@ func change_texture():
 	$TextureRect.size = Vector2(ball_size[ball_level]*2, ball_size[ball_level]*2)
 	$TextureRect.position = Vector2(-ball_size[ball_level], -ball_size[ball_level])
 	$TextureRect.set_anchors_preset(Control.PRESET_CENTER,true)
-	$TextureRect.set_texture(Global.image_var[Global.skin_num][ball_level])
+	if Global.image_var[Global.skin_num][ball_level] != null:
+		$TextureRect.set_texture(Global.image_var[Global.skin_num][ball_level])
 	

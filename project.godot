@@ -25,6 +25,8 @@ MenuTemplateManager="*res://addons/EasyMenus/Scripts/menu_template_manager.gd"
 window/size/viewport_width=405
 window/size/viewport_height=720
 window/size/initial_position_type=2
+window/stretch/mode="canvas_items"
+window/handheld/orientation=1
 
 [dotnet]
 
@@ -52,3 +54,4 @@ touch={
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

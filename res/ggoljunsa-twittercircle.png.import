@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://g5e2siidf6km"
 path.s3tc="res://.godot/imported/ggoljunsa-twittercircle.png-b5561f2c64612f4f9d6f003115bc2677.s3tc.ctex"
+path.etc2="res://.godot/imported/ggoljunsa-twittercircle.png-b5561f2c64612f4f9d6f003115bc2677.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://res/ggoljunsa-twittercircle.png"
-dest_files=["res://.godot/imported/ggoljunsa-twittercircle.png-b5561f2c64612f4f9d6f003115bc2677.s3tc.ctex"]
+dest_files=["res://.godot/imported/ggoljunsa-twittercircle.png-b5561f2c64612f4f9d6f003115bc2677.s3tc.ctex", "res://.godot/imported/ggoljunsa-twittercircle.png-b5561f2c64612f4f9d6f003115bc2677.etc2.ctex"]
 
 [params]
 

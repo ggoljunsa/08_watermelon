@@ -95,8 +95,8 @@ visible = false
 layout_mode = 1
 
 [connection signal="restart_game_pressed" from="." to="." method="_on_restart_game_pressed"]
-[connection signal="pressed" from="Content/RetryGameButton" to="." method="_on_retry_game_button_pressed"]
 [connection signal="pressed" from="Content/RetryGameButton" to="." method="_on_resume_game_button_pressed"]
+[connection signal="pressed" from="Content/RetryGameButton" to="." method="_on_retry_game_button_pressed"]
 [connection signal="pressed" from="Content/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Content/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="Content/QuitButton" to="." method="_on_quit_button_pressed"]
