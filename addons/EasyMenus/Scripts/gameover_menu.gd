@@ -15,9 +15,9 @@ func _process(delta):
 	pass
 
 func set_result_screen():
-	$Content/HighScore.text =  "Hightscore: "+ str(Global.highscore)
+	$Content/HighScore.text =  "Hightscore: "+ str(Global.high_score)
 	$Content/Score.text = "Score: " + str(Global.score)
-
+	$Content/Coins.text = "Coins: " + str(Global.coins)
 
 func _on_retry_game_button_pressed():
 	close_gameover_menu()

@@ -3,7 +3,7 @@ extends Area2D
 signal gameover
 
 var body_in_area = []
-@onready var timer = $Timer
+
 
 var wait_flag = 0
 func _ready():

@@ -56,6 +56,7 @@ theme_override_font_sizes/font_size = 30
 text = "Resume"
 
 [node name="OptionsButton" type="Button" parent="Content"]
+visible = false
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -145,7 +146,7 @@ layout_mode = 2
 text = "Choose your skin"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="ToggleMenu/VBoxContainer"]
+[node name="Coins" type="Label" parent="ToggleMenu/VBoxContainer"]
 layout_mode = 2
 text = "Coin: 100 coins"
 horizontal_alignment = 1
@@ -162,6 +163,19 @@ item_2/icon = ExtResource("5_hxdcd")
 item_3/text = "100코인 엘븐목장에서 얻을 수 있는 스킨"
 item_3/icon = ExtResource("6_jn4j3")
 script = ExtResource("7_r35mf")
+
+[node name="Label3" type="Label" parent="ToggleMenu/VBoxContainer"]
+layout_mode = 2
+text = "100coin으로 스킨 랜덤가챠 "
+horizontal_alignment = 1
+
+[node name="GachaButton" type="Button" parent="ToggleMenu/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 25
+text = "Gacha!"
 
 [node name="BackButton" type="Button" parent="ToggleMenu/VBoxContainer"]
 custom_minimum_size = Vector2(350, 0)
@@ -185,4 +199,5 @@ text = "Back"
 [connection signal="item_activated" from="ToggleMenu/VBoxContainer/ItemList" to="ToggleMenu" method="_on_item_list_item_activated"]
 [connection signal="item_clicked" from="ToggleMenu/VBoxContainer/ItemList" to="ToggleMenu" method="_on_item_list_item_clicked"]
 [connection signal="item_selected" from="ToggleMenu/VBoxContainer/ItemList" to="ToggleMenu" method="_on_item_list_item_selected"]
+[connection signal="pressed" from="ToggleMenu/VBoxContainer/GachaButton" to="ToggleMenu" method="_on_gacha_button_pressed"]
 [connection signal="pressed" from="ToggleMenu/VBoxContainer/BackButton" to="ToggleMenu" method="go_back"]

@@ -10,43 +10,14 @@ signal skin_changed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Assign your button and checkbox here
-	for button in radio_buttons:
-		#print(button.get_index())
-		button.text = checkBox_text[button.get_index()]
-		#button.connect("toggled", _on_button_toggled, button.get_index())
-	"""
-	for i in range(9):
-		var checkbox = CheckBox.new() # create new checkbox
-		if checkBox_text[i] != null:
-			checkbox.text = checkBox_text[i]
-		checkbox.connect("toggled", _on_checkbox_toggled, i) # connect its "toggled" signal to a function
-		$Content.add_child(checkbox) # add the checkbox as child
-		checkBoxes.append(checkbox) # add to the list of checkboxes
-"""
+	update_coin_text()
+
+func update_coin_text():
+	$VBoxContainer/Coins.text = "Coins: " + str(Global.coins)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
-func _on_check_box_toggled(button_pressed, extra_arg_0):
-	if button_pressed:
-		emit_signal("skin_changed")
-		Global.set_skin(extra_arg_0)
-		for other_button in radio_buttons:
-			if other_button != radio_buttons[extra_arg_0]:
-				other_button.set_pressed(false)
-
-
-
-func _on_check_box_pressed(extra_arg_0):
-	emit_signal("skin_changed")
-	Global.set_skin(extra_arg_0)
-	for other_button in radio_buttons:
-		if other_button != radio_buttons[extra_arg_0]:
-			other_button.set_pressed(false)
-		else:
-			other_button.set_pressed(true)
 
 
 func _on_item_list_item_clicked(index, at_position, mouse_button_index):
@@ -71,3 +42,12 @@ func _on_item_list_item_activated(index):
 signal close
 func go_back():
 	emit_signal("close")
+
+
+func _on_gacha_button_pressed():
+	#first check if it's enough coin left
+	#if coin is left enough, you can unlock random skin left
+	#use label to show whick skin you unlocked
+	#if coin is not enough, you can't unlock the skin, set text can't get skin
+	
+	pass # Replace with function body.

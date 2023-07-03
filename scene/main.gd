@@ -104,6 +104,9 @@ func _on_update_score():
 
 #game over function
 func _on_game_over_area_2d_gameover():
+	Global.update_high_score(Global.score)
+	var coin_to_add = cal_coin_socre(Global.score)
+	Global.add_coins(coin_to_add)
 	$UI/GameoverMenu.show()
 	$UI/GameoverMenu.set_result_screen()
 	get_tree().paused = true
@@ -116,3 +119,6 @@ func _on_pause_menu_back_to_main_pressed():
 
 func _on_gameover_menu_back_to_main_pressed():
 	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/main_menu.tscn")
+
+func cal_coin_socre(num):
+	return int(num/10)*10
