@@ -2,8 +2,8 @@ extends Node
 @export_dir var image_location: String = "res://res/lastorigin"
 var img_location = ["res://res/lastorigin",
 					"res://res/physicalGame",
-					"res://res/elven",
-					"res://res/manmae"
+					"res://res/manmae",
+					"res://res/elven"
 					]
 var image_var = []
 @export var main_path: String = "res://scene/main.tscn"
@@ -36,7 +36,7 @@ func reset_score():
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	load_high_score()
-	load_coins()
+	#load_coins()
 	for location in img_location:
 		image_var.append(load_imports_at(location, "png"))
 	# test:
@@ -103,7 +103,7 @@ func spend_coins(amount):
 	else:
 		print("Not enough coins")
 		return false
-
+"""
 # Function to save coins to a file
 func save_coins():
 	var save_file = ConfigFile.new()
@@ -117,3 +117,6 @@ func load_coins():
 		coins = save_file.get_value("coin_data", "coins", 0)
 	else:
 		print("No save file found, starting with 0 coins")
+"""
+
+		

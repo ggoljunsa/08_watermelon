@@ -3,37 +3,79 @@ extends RigidBody2D
 var ball_collision
 var ball_texture
 var ball_Area
-
-
-
-
 var ball_level = 0 
 var bojungchi = 300
 @export var ball_size = [0.08*bojungchi,0.102*bojungchi, 0.155*bojungchi, 0.209*bojungchi, 0.25*bojungchi,0.3*bojungchi, 0.418*bojungchi, 0.45*bojungchi, 0.5*bojungchi, 0.55*bojungchi, 0.6*405, 0.7*bojungchi]
 @export var collision_radius = 1
+
+
+var is_dragged = false
+var original_position = Vector2.ZERO
+var threshold = 50.0  # Change this based on your requirements
+
+
 
 #signal for scoring system
 signal score_update
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	original_position = position
+	print(original_position)
 	#set angular damp
 	set_angular_damp_mode(1)
 	set_angular_damp(20)
-	
-	
 	ball_collision = get_node("CollisionShape2D")
 	#print($CollisionShape2D.shape.get_radius())
 	ball_texture = $TextureRect
 	ball_Area = get_node("Area2D/CollisionShape2D")
-	
 
-	pass # Replace with function body.
+"""
+func _input(event):
+	if event is InputEventScreenTouch:
+		if position.distance_to(event.position) < threshold and event.is_pressed():
+			# The user touched the object, start dragging
+			is_dragged = true
+			sleeping = true  # Temporarily freeze physics
+		elif not event.is_pressed():
+			
+			# The user released the touch, stop dragging
+			is_dragged = false
+			if position.distance_to(original_position) < threshold:
+				# The object is near the original position, move it back
+				position = original_position
+				#sleeping = true  # Keep physics frozen
+			else:
+				#sleeping = false  # Let physics apply
+				print("release")
+				set_physics_process(true)
+				freeze = false
+				get_node("Area2D").monitoring = true
+				set_process_input(false)
+				get_parent()._on_main_detect_ball()
+
+				
+
+	if event is InputEventScreenDrag and is_dragged:
+		# Move the object with the drag
+		var new_position = position + event.relative
+		var screen_rect = get_viewport_rect()
+		
+		# Clamp the position to stay within the screen
+		new_position.x = clamp(new_position.x, 0, screen_rect.size.x)
+		new_position.y = clamp(new_position.y, 0, original_position.y+50)
+		
+		position = new_position
+
+"""
+
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	pass
+
 
 
 func _on_area_2d_area_entered(area):

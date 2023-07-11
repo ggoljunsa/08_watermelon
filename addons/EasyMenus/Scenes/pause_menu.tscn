@@ -56,7 +56,6 @@ theme_override_font_sizes/font_size = 30
 text = "Resume"
 
 [node name="OptionsButton" type="Button" parent="Content"]
-visible = false
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -112,28 +111,6 @@ anchor_right = 1.0
 offset_bottom = 720.0
 grow_horizontal = 2
 
-[node name="Content2" type="VBoxContainer" parent="ToggleMenu"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="CheckBox" type="CheckBox" parent="ToggleMenu/Content2"]
-layout_mode = 2
-text = "PhysicalGame Skin"
-
-[node name="CheckBox2" type="CheckBox" parent="ToggleMenu/Content2"]
-layout_mode = 2
-text = "Wehihi Skin"
-
-[node name="CheckBox3" type="CheckBox" parent="ToggleMenu/Content2"]
-layout_mode = 2
-text = "Manmae Skin"
-
-[node name="CheckBox4" type="CheckBox" parent="ToggleMenu/Content2"]
-layout_mode = 2
-text = "만메 스킨"
-
 [node name="VBoxContainer" type="VBoxContainer" parent="ToggleMenu"]
 layout_mode = 1
 anchors_preset = -1
@@ -158,15 +135,24 @@ item_0/text = "기본 라스트오리진 캐릭터들이 나온 스킨"
 item_0/icon = ExtResource("4_6y4v8")
 item_1/text = "100 코인 메이를 좋아하는 누군가의 스킨"
 item_1/icon = ExtResource("4_wctax")
+item_1/disabled = true
 item_2/text = "100코인 찌그러진 린티킨를 위한 스킨"
 item_2/icon = ExtResource("5_hxdcd")
+item_2/disabled = true
 item_3/text = "100코인 엘븐목장에서 얻을 수 있는 스킨"
 item_3/icon = ExtResource("6_jn4j3")
+item_3/disabled = true
 script = ExtResource("7_r35mf")
 
 [node name="Label3" type="Label" parent="ToggleMenu/VBoxContainer"]
 layout_mode = 2
 text = "100coin으로 스킨 랜덤가챠 "
+horizontal_alignment = 1
+
+[node name="GatchaLabel" type="Label" parent="ToggleMenu/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Press Gacha to unlock the skin"
 horizontal_alignment = 1
 
 [node name="GachaButton" type="Button" parent="ToggleMenu/VBoxContainer"]
@@ -192,10 +178,6 @@ text = "Back"
 [connection signal="pressed" from="Content/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="close" from="OptionsMenu" to="." method="_on_options_menu_close"]
 [connection signal="close" from="ToggleMenu" to="." method="_on_toggle_menu_close"]
-[connection signal="pressed" from="ToggleMenu/Content2/CheckBox" to="ToggleMenu" method="_on_check_box_pressed" binds= [0]]
-[connection signal="pressed" from="ToggleMenu/Content2/CheckBox2" to="ToggleMenu" method="_on_check_box_pressed" binds= [1]]
-[connection signal="pressed" from="ToggleMenu/Content2/CheckBox3" to="ToggleMenu" method="_on_check_box_pressed" binds= [2]]
-[connection signal="pressed" from="ToggleMenu/Content2/CheckBox4" to="ToggleMenu" method="_on_check_box_pressed" binds= [3]]
 [connection signal="item_activated" from="ToggleMenu/VBoxContainer/ItemList" to="ToggleMenu" method="_on_item_list_item_activated"]
 [connection signal="item_clicked" from="ToggleMenu/VBoxContainer/ItemList" to="ToggleMenu" method="_on_item_list_item_clicked"]
 [connection signal="item_selected" from="ToggleMenu/VBoxContainer/ItemList" to="ToggleMenu" method="_on_item_list_item_selected"]

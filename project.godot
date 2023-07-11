@@ -12,8 +12,8 @@ config_version=5
 
 config/name="08_watermelon"
 run/main_scene="res://addons/EasyMenus/Scenes/main_menu.tscn"
-config/features=PackedStringArray("4.0", "Mobile")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.1", "Mobile")
+config/icon="res://res/icon/icon_title.png"
 
 [autoload]
 
@@ -48,8 +48,12 @@ directory_path="res://addons/godot-idea-board/savedata/"
 
 touch={
 "deadzone": 0.5,
-"events": []
+"events": [null]
 }
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [rendering]
 

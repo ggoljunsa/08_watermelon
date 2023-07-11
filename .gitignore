@@ -1,2 +1,10 @@
 # Godot 4+ specific ignores
 .godot/
+
+*.mp4
+
+*.avi
+
+android/
+
+export/

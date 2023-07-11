@@ -9,6 +9,7 @@ var ball_generate_flag = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	original_position = $UI/Spot.position
 	ball_generate(rand_generate(), $UI/Spot.position)
 	var togglemenu_node = get_node("UI/PauseMenu/ToggleMenu")
 	#print("togglemenu_node", togglemenu_node)
@@ -23,29 +24,50 @@ func change_skin():
 
 func _process(_delta):
 	pass
-	"""
-	if ball_generate_flag:
-		var pos = Vector2($UI/Spot.position)
-		ball_generate(rand_generate(), pos)
-		ball_generate_flag = false
-		await get_tree().create_timer(3).timeout
-		ball_generate_flag = true
-	"""
 
-
-
-
-
+var is_dragged = false
+var original_position = Vector2.ZERO
+var threshold = 50.0  # Change this based on your requirements
 var input_flag = true
-func _unhandled_input(event):
+var drag_start_position = Vector2.ZERO  # Store the position where the drag started
+
+func _input(event):
 	if input_flag:
-		if event is InputEventMouseButton and event.pressed:
-			#print(event.position)
-			input_flag = false
-			#print("마우스 위치: ", event.position)
-			var pos = Vector2(event.position.x, $UI/Spot.position.y+100)
-			move_ball(pos)
+		if event is InputEventScreenTouch:
+			if event.is_pressed():
+				# The user touched the object, start dragging
+				is_dragged = true
+				drag_start_position = event.position
+				instance.set_sleeping(true)  # Temporarily freeze physics
+			elif not event.is_pressed():
+				
+				# The user released the touch, stop dragging
+				is_dragged = false
+				if instance.position.distance_to(original_position) < threshold:
+					# The object is near the original position, move it back
+					instance.position = original_position
+					#sleeping = true  # Keep physics frozen
+				else:
+					#sleeping = false  # Let physics apply
+					print("release")
+					instance.set_physics_process(true)
+					instance.freeze = false
+					instance.get_node("Area2D").monitoring = true
+					instance.set_process_input(false)
+					emit_signal("detect_ball")
+					input_flag = false
+
+		elif event is InputEventScreenDrag and is_dragged:
+			# Move the object with the drag
+			var new_position = instance.position + event.relative
+			var drag_start_position = event.position  # Store the position where the drag started
+			var screen_rect = get_viewport_rect()
 			
+			# Clamp the position to stay within the screen
+			new_position.x = clamp(new_position.x, 0, screen_rect.size.x)
+			new_position.y = clamp(new_position.y, 0, original_position.y+50)
+			
+			instance.position = new_position
 
 
 signal detect_ball
