@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://jsta0dvwkg5q"]
+
+[ext_resource type="Script" path="res://scene/select_box.gd" id="1_ayhl5"]
+
+[node name="SelectBox" type="Control"]
+layout_mode = 3
+anchor_right = 0.79
+anchor_bottom = 0.356
+offset_right = 0.0499878
+offset_bottom = -0.320007
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ayhl5")
+
+[node name="ColorRect" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 256.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.79
+anchor_bottom = 0.356
+offset_right = 46.2
+offset_bottom = 117.864
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "스킨 이름"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "스킨에 대한 설명 "
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "아직 얻지 못한 스킨입니다"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Button_getskin" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " 장착하기 "
+
+[node name="Button_back" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "  돌아기기  "
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button_getskin" to="." method="_on_button_getskin_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button_back" to="." method="_on_button_back_pressed"]

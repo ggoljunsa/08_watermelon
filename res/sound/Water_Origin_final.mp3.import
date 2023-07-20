@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Water_Origin_final.mp3-4fe5849568d6df1583b539
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

@@ -134,6 +134,7 @@ text = "1"
 horizontal_alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_right = 100

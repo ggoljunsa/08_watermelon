@@ -1,15 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://dhypcprpq0r6m"]
+[gd_scene load_steps=20 format=3 uid="uid://dhypcprpq0r6m"]
 
 [ext_resource type="Script" path="res://scene/main.gd" id="1_qajoh"]
-[ext_resource type="Texture2D" uid="uid://bqwpbf2ax5r2h" path="res://res/background/cafe.jpg" id="2_6qpn2"]
 [ext_resource type="Script" path="res://scene/object.gd" id="2_8x0f3"]
 [ext_resource type="Shader" path="res://scene/background.gdshader" id="2_my1gd"]
 [ext_resource type="Script" path="res://scene/Label.gd" id="3_hlaks"]
+[ext_resource type="Texture2D" uid="uid://cl1dkrww0gykg" path="res://res/background/배경.png" id="3_okmy0"]
 [ext_resource type="Script" path="res://scene/PauseButton.gd" id="4_b1kr8"]
 [ext_resource type="AudioStream" uid="uid://bptvplu1kit7b" path="res://res/sound/ID15_snd_bubble.wav" id="4_budij"]
 [ext_resource type="PackedScene" uid="uid://rw7gdui8lu3n" path="res://addons/EasyMenus/Scenes/pause_menu.tscn" id="5_cuabr"]
 [ext_resource type="PackedScene" uid="uid://cpg6qo6jbi8eh" path="res://addons/EasyMenus/Scenes/gameover_menu.tscn" id="6_ev7k4"]
 [ext_resource type="Script" path="res://scene/GameOverArea2D.gd" id="7_ihoo5"]
+[ext_resource type="AudioStream" uid="uid://mnvrt6s8ejyj" path="res://res/sound/2.mp3" id="11_gapi0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kxnno"]
 shader = ExtResource("2_my1gd")
@@ -68,12 +69,16 @@ script = ExtResource("1_qajoh")
 
 [node name="Cafe" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_kxnno")
-offset_left = -472.0
+offset_left = -16.0
 offset_top = -8.0
-offset_right = 728.0
-offset_bottom = 650.0
+offset_right = 390.0
+offset_bottom = 634.462
 scale = Vector2(1.14365, 1.14365)
-texture = ExtResource("2_6qpn2")
+texture = ExtResource("3_okmy0")
+expand_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="."]
+color = Color(0, 0.6, 0.388235, 1)
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -93,12 +98,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Label_game" type="Label" parent="UI/UpperboxControl/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "watermellon game"
-horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="UI/UpperboxControl/HBoxContainer"]
 layout_mode = 2
@@ -171,9 +170,9 @@ debug_color = Color(0.541176, 0.407843, 1, 0.419608)
 
 [node name="Line2D" type="Line2D" parent="GameOverArea2D/CollisionShape2D"]
 position = Vector2(0, -8)
-points = PackedVector2Array(-200, 16, 200, 16)
+points = PackedVector2Array(-240, 16, 256, 16)
 width = 5.0
-default_color = Color(0, 0, 0, 1)
+default_color = Color(0.988235, 0.988235, 0.988235, 1)
 
 [node name="object" type="Control" parent="."]
 layout_mode = 3
@@ -184,6 +183,9 @@ script = ExtResource("2_8x0f3")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_budij")
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_gapi0")
 
 [connection signal="detect_ball" from="." to="object" method="_on_main_detect_ball"]
 [connection signal="merge_sound" from="." to="." method="play_sound"]

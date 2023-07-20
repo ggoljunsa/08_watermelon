@@ -1,37 +1,67 @@
 extends Control
 
 # Declare your button and checkbox here
-@onready var radio_buttons = $VBoxContainer/ItemList
+@onready var radio_buttons =%ItemList
 @export var checkBox_text : Array = Array()
 var lockButton = null
 var isLocked = true
-var lockPrice = 10 # Here we set a certain amount to unlock the button.
+var lockPrice = 100 # Here we set a certain amount to unlock the button.
 signal skin_changed
 var skin_label
-
+var selectbox
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_data()
+	get_unlocked_skins()
+	skin_label = get_node("VBoxContainer2/GatchaLabel")
+	selectbox = get_node("SelectBox")
+	skin_label.set_text("Press Gacha to unlock the skin")
 	# Global.coins = 200
-	skin_label = %GatchaLabel
-	skin_label.text = "Press Gacha to unlock the skin"
+	pass
+func load_things():
 	update_coin_text()
+	for i in range(radio_buttons.get_item_count()):
+		if not radio_buttons.is_item_disabled(i):
+			radio_buttons.set_item_disabled(i, true)
+	set_unlocked_skins()
+	print(Global.unlocked_skins)
+
+func get_unlocked_skins():
+	var un_skins = []
+	for i in range(radio_buttons.get_item_count()):
+		if not radio_buttons.is_item_disabled(i):
+			un_skins.append(Global.skin_name[i])
+	Global.unlocked_skins = un_skins
+
+func set_unlocked_skins():
+	for i in range(radio_buttons.get_item_count()):
+		var skin_name = Global.skin_name[i]
+		if skin_name in Global.unlocked_skins:
+			radio_buttons.set_item_disabled(i, false)
+		else:
+			radio_buttons.set_item_disabled(i, true)
 
 func update_coin_text():
-	$VBoxContainer/Coins.text = "Coins: " + str(Global.coins)
+	%Coins.text = "Coins: " + str(Global.coins)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 
+var temp_skin_var = 0
 func _on_item_list_item_clicked(index, at_position, mouse_button_index):
+	#open selectbox
 	#it gives signal also when the button is disabled
-	Global.set_skin(index)
-	emit_signal("skin_changed")
-	#print("item clicked", index, at_position, mouse_button_index)
-	pass # Replace with function body.
-
+	if radio_buttons.is_item_disabled(index) == false:
+		temp_skin_var = index
+		selectbox.get_node("VBoxContainer/HBoxContainer/Button_getskin").set_disabled(false)
+	else:
+		selectbox.get_node("VBoxContainer/HBoxContainer/Button_getskin").set_disabled(true)
+		pass
+	selectbox.show()
+	selectbox.get_node("VBoxContainer/Label").set_text(Global.skin_name[index])
+	selectbox.get_node("VBoxContainer/Label2").set_text(Global.skin_description[index])
+	
 
 func _on_item_list_item_selected(index):
 	#print("item selected", index)
@@ -46,6 +76,8 @@ func _on_item_list_item_activated(index):
 
 signal close
 func go_back():
+	get_unlocked_skins()
+	Global.save_data()
 	emit_signal("close")
 
 # Randomly selects an index of a locked skin
@@ -65,37 +97,15 @@ func _on_gacha_button_pressed():
 		if skin_index != -1:
 			radio_buttons.set_item_disabled(skin_index, false)
 			Global.coins -= lockPrice
-			skin_label.text = "You've unlocked " + radio_buttons.get_item_text(skin_index) + "!"
-			save_data()
+			skin_label.text = "You've unlocked " + Global.skin_name[skin_index] + "!"
+			get_unlocked_skins()
 		else:
 			skin_label.text = "All skins have been unlocked."
 	else:
 		skin_label.text = "You don't have enough coins to unlock a skin."
+	load_things()
 
-#function to save things
-func save_data():
-	var save_file = ConfigFile.new()
-	save_file.set_value("game_data", "coins", Global.coins)
-	
-	var unlocked_skins = []
-	for i in range(radio_buttons.get_item_count()):
-		if not radio_buttons.is_item_disabled(i):
-			unlocked_skins.append(radio_buttons.get_item_text(i))
-	save_file.set_value("game_data", "unlocked_skins", unlocked_skins)
-	save_file.save("user://savegame.save")
 
-# Function to load coins and unlocked skins from a file
-func load_data():
-	var save_file = ConfigFile.new()
-	if save_file.load("user://savegame.save") == OK:
-		Global.coins = save_file.get_value("game_data", "coins", 0)
-		
-		var unlocked_skins = save_file.get_value("game_data", "unlocked_skins", [])
-		for i in range(radio_buttons.get_item_count()):
-			var skin_name = radio_buttons.get_item_text(i)
-			if skin_name in unlocked_skins:
-				radio_buttons.set_item_disabled(i, false)
-			else:
-				radio_buttons.set_item_disabled(i, true)
-	else:
-		print("No save file found, starting with 0 coins and no unlocked skins.")
+func _on_select_box_get_skin():
+	Global.set_skin(temp_skin_var)
+	emit_signal("skin_changed")

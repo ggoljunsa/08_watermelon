@@ -35,6 +35,7 @@ func _on_options_menu_close():
 	resume_game_button.grab_focus()
 
 func _on_quit_button_pressed():
+	Global.save_data()
 	get_tree().quit()
 
 
@@ -52,6 +53,7 @@ func _input(event):
 func _on_toggle_button_pressed():
 	content.hide()
 	toggle_menu.show()
+	toggle_menu.load_things()
 	#toggle_menu.on_open()
 
 
@@ -59,3 +61,8 @@ func _on_toggle_menu_close():
 	toggle_menu.hide()
 	content.show()
 	toggle_menu.grab_focus()
+
+
+func _on_reset_button_pressed():
+	print('reset')
+	Global.reset_data()

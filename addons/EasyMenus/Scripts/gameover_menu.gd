@@ -32,6 +32,7 @@ func _on_options_button_pressed():
 
 
 func _on_quit_button_pressed():
+	Global.save_data()
 	get_tree().quit()
 
 func close_gameover_menu():
@@ -47,6 +48,7 @@ func _on_back_to_menu_button_pressed():
 
 
 func _on_restart_game_pressed():
+	Global.score = 0
 	get_tree().change_scene_to_file(Global.main_path)
 
 

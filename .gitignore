@@ -3,8 +3,9 @@
 
 *.mp4
 
-*.avi
-
 android/
 
 export/
+
+res/
+*.avi

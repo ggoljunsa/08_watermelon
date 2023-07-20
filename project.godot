@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="08_watermelon"
-run/main_scene="res://addons/EasyMenus/Scenes/main_menu.tscn"
+run/main_scene="res://scene/intro.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://res/icon/icon_title.png"
 
@@ -44,6 +44,11 @@ enabled=PackedStringArray("res://addons/godot-idea-board/plugin.cfg")
 
 directory_path="res://addons/godot-idea-board/savedata/"
 
+[gui]
+
+theme/custom="res://default_theme.tres"
+theme/custom_font="res://res/font/나눔손글씨 세아체.ttf"
+
 [input]
 
 touch={
@@ -59,3 +64,4 @@ pointing/emulate_touch_from_mouse=true
 
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.301961, 0.301961, 0.301961, 1)

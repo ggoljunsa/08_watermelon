@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://q0goyfjgepja"]
+
+[ext_resource type="FontFile" uid="uid://7l7xyg1n72c2" path="res://res/font/나눔손글씨 세아체.ttf" id="1_0043a"]
+[ext_resource type="StyleBox" uid="uid://gi8gm3hxoyjw" path="res://res/theme/hover_style_box_flat.tres" id="2_1jo5o"]
+[ext_resource type="StyleBox" uid="uid://c1acb04hsx43m" path="res://res/theme/focus_style_box_flat.tres" id="2_kry46"]
+[ext_resource type="StyleBox" uid="uid://b0vyepctb5df6" path="res://res/theme/normal_style_box_flat.tres" id="3_bknd8"]
+[ext_resource type="StyleBox" uid="uid://dhn5sn5sl7cmb" path="res://res/theme/pressed_style_box_flat.tres" id="4_dd5y4"]
+
+[resource]
+Button/colors/font_color = Color(0.364706, 0.247059, 0.133333, 1)
+Button/colors/font_focus_color = Color(0.364706, 0.247059, 0.133333, 1)
+Button/colors/font_hover_color = Color(0.364706, 0.247059, 0.133333, 1)
+Button/colors/font_hover_pressed_color = Color(0.364706, 0.247059, 0.133333, 1)
+Button/colors/font_pressed_color = Color(0.364706, 0.247059, 0.133333, 1)
+Button/font_sizes/font_size = 40
+Button/fonts/font = ExtResource("1_0043a")
+Button/styles/focus = ExtResource("2_kry46")
+Button/styles/hover = ExtResource("2_1jo5o")
+Button/styles/normal = ExtResource("3_bknd8")
+Button/styles/pressed = ExtResource("4_dd5y4")
+Label/font_sizes/font_size = 40
