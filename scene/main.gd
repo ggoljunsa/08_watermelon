@@ -21,9 +21,35 @@ func change_skin():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
+#Queue 선언
+var merge_queue : Array = []
+#신호를 받는 메소드
+func add_to_merge_queue(ball):
+	#중복 방지를 위한 검사
+	if ball not in merge_queue:
+		merge_queue.append(ball)
 
+# 매 프레임마다 합칠 공이 있는지 확인
 func _process(_delta):
-	pass
+	handle_merge()
+
+# 합치기 로직
+func handle_merge():
+	if merge_queue.size() < 2:
+		return
+	var ball_to_merge = merge_queue[0]
+	var other_ball = merge_queue[1]
+	#ball_to_merge will be queue_freed, so the position will be lower(bigger) than other_ball
+	if ball_to_merge.position.y < other_ball.position.y:
+		ball_to_merge = merge_queue[1]
+		other_ball = merge_queue[0]
+	ball_to_merge.merge_ball(other_ball)
+	other_ball.get_node("Merge").play()
+	merge_queue = []
+
+	# 여기서 합치기 로직을 실행. ball.gd의 merge_ball 함수 등을 호출하면 됨
+	# 예: ball_to_merge.merge_ball(other_ball)
+
 
 var is_dragged = false
 var original_position = Vector2.ZERO

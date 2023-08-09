@@ -169,7 +169,7 @@ shape = SubResource("RectangleShape2D_c8850")
 debug_color = Color(0.541176, 0.407843, 1, 0.419608)
 
 [node name="Line2D" type="Line2D" parent="GameOverArea2D/CollisionShape2D"]
-position = Vector2(0, -8)
+position = Vector2(0, -3)
 points = PackedVector2Array(-240, 16, 256, 16)
 width = 5.0
 default_color = Color(0.988235, 0.988235, 0.988235, 1)

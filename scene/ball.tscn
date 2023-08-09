@@ -4,7 +4,7 @@
 [ext_resource type="Shape2D" uid="uid://b2fdefwnlbmyg" path="res://scene/ball_collision.tres" id="2_la1c4"]
 [ext_resource type="Material" uid="uid://bcd411hymmsby" path="res://scene/ball.tres" id="3_0uh1v"]
 [ext_resource type="Shader" path="res://scene/ball.gdshader" id="3_hvxw2"]
-[ext_resource type="Texture2D" uid="uid://cac33pthhqd7i" path="res://res/lastorigin/01_naen.png" id="5_1g2xk"]
+[ext_resource type="Texture2D" uid="uid://cac33pthhqd7i" path="res://res/skin/01_lastorigin/01_naen.png" id="5_1g2xk"]
 [ext_resource type="AudioStream" uid="uid://bptvplu1kit7b" path="res://res/sound/ID15_snd_bubble.wav" id="6_nc717"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qj4if"]

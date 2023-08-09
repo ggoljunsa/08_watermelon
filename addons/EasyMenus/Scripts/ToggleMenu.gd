@@ -15,6 +15,7 @@ func _ready():
 	skin_label = get_node("VBoxContainer2/GatchaLabel")
 	selectbox = get_node("SelectBox")
 	skin_label.set_text("Press Gacha to unlock the skin")
+
 	# Global.coins = 200
 	pass
 func load_things():
@@ -49,7 +50,31 @@ func _process(delta):
 
 
 var temp_skin_var = 0
+
+# 전역 변수 추가
+var dragging = false
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP or event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			dragging = true
+			$DragTimer.start()  # Timer 시작
+			print("mouse start")
+	elif event is InputEventScreenDrag:
+		dragging = true
+		$DragTimer.start()  # Timer 시작
+		print("touch drag")
+
+func _on_DragTimer_timeout():
+	dragging = false
+	print("end drag")
+
 func _on_item_list_item_clicked(index, at_position, mouse_button_index):
+	# 마우스 휠이나 터치 드래그 시에는 함수를 실행하지 않는다.
+	if dragging:
+		print("on_list")
+		return
+
 	#open selectbox
 	#it gives signal also when the button is disabled
 	if radio_buttons.is_item_disabled(index) == false:

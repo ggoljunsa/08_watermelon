@@ -150,7 +150,7 @@ func save_coins():
 
 # Function to load coins from a file
 func load_coins():
-	var save_file = ConfigFile.new()
+	#var save_file = ConfigFile.new()
 	if save_file.load(save_path) == OK:
 		coins = save_file.get_value("game_data", "coins", 0)
 	else:

@@ -84,19 +84,7 @@ func _on_area_2d_area_entered(area):
 		if other_ball != null:
 			#other ball will be the slow one, which gets bigger
 			if other_ball.ball_level == ball_level:
-				if speed(linear_velocity) > speed(other_ball.linear_velocity):
-					$Merge.play()
-					await get_tree().create_timer(0.05).timeout
-					#set_physics_process(false)
-					merge_ball(other_ball)
-					#
-					#set_physics_process(true)
-					
-				else:
-					#print('hello')
-					$Merge.play()
-					await get_tree().create_timer(0.05).timeout
-					#await get_tree().create_timer(0.1).timeout
+				get_node("/root/main").add_to_merge_queue(self)
 		else:
 			print("error: other ball null error")
 
@@ -104,6 +92,7 @@ func speed(linear_velocity):
 	return sqrt(linear_velocity.x*linear_velocity.x + linear_velocity.y*linear_velocity.y)
 
 func merge_ball(other_ball):
+	#make ohter ball queue free
 	if other_ball != null:
 		Global.increment_score(ball_level+1)
 		set_physics_process(false)
