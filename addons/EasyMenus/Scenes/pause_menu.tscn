@@ -171,6 +171,7 @@ item_count = 15
 max_columns = 4
 item_0/text = ""
 item_0/icon = ExtResource("4_6y4v8")
+item_0/disabled = true
 item_1/text = ""
 item_1/icon = ExtResource("4_wctax")
 item_1/disabled = true
@@ -200,14 +201,19 @@ item_9/icon = ExtResource("13_3vl0p")
 item_9/disabled = true
 item_10/text = ""
 item_10/icon = ExtResource("14_ieoun")
+item_10/disabled = true
 item_11/text = ""
 item_11/icon = ExtResource("15_u6icq")
+item_11/disabled = true
 item_12/text = ""
 item_12/icon = ExtResource("16_8ky52")
+item_12/disabled = true
 item_13/text = ""
 item_13/icon = ExtResource("17_6jpgf")
+item_13/disabled = true
 item_14/text = ""
 item_14/icon = ExtResource("18_8ob72")
+item_14/disabled = true
 script = ExtResource("7_r35mf")
 
 [node name="Label" type="Label" parent="ToggleMenu/ScrollContainer/VBoxContainer"]

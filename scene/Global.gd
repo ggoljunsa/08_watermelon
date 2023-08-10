@@ -49,6 +49,7 @@ var skin_description = ["라스트오리진 캐릭터들이 있는 기본 스킨
 				"개발자의 그림 스승님의 도트 작업물입니다. 도트를 잘 찍습니다.",
 				"아몬두만 님의 스킨입니다."]
 var has_pressed_support_button = false
+var unlocked_skins = []
 
 func _init():
 	score = 0
@@ -63,12 +64,13 @@ func reset_score():
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	img_location = get_directories_in_path("res://res/skin/")
-	load_data()
+	
 	#load_coins()
 	for location in img_location:
 		image_var.append(load_imports_at(location, "png"))
 	# test:
 	print(img_location)
+	load_data()
 
 func get_directories_in_path(path: String, filter: String = "") -> Array:
 	if not DirAccess.dir_exists_absolute(path):
@@ -172,7 +174,7 @@ func reset_data():
 	pass # Replace with function body.
 
 #function to save things
-var unlocked_skins = []
+
 func save_data():
 	save_coins()
 	save_file.set_value("game_data", "cur_skin", skin_num)
@@ -180,6 +182,7 @@ func save_data():
 	save_file.set_value("game_data", "unlocked_skins", unlocked_skins)
 	save_file.set_value("game_data", "supprotbutton", has_pressed_support_button)
 	save_file.save(save_path)
+	print("data saved: unlocked_skins\n", unlocked_skins)
 
 # Function to load coins and unlocked skins from a file
 func load_data():
@@ -189,5 +192,8 @@ func load_data():
 		skin_num = save_file.get_value("game_data", "cur_skin", 0)
 		has_pressed_support_button = save_file.get_value("game_data", "supprotbutton", false)
 		#ToggleMenu.set_unlocked_skins()
+		print("load_data, unlocked_skins\n", unlocked_skins)
 	else:
 		print("No save file found, starting with 0 coins and no unlocked skins.")
+
+

@@ -11,7 +11,7 @@ var skin_label
 var selectbox
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_unlocked_skins()
+	set_unlocked_skins()
 	skin_label = get_node("VBoxContainer2/GatchaLabel")
 	selectbox = get_node("SelectBox")
 	skin_label.set_text("Press Gacha to unlock the skin")
@@ -20,11 +20,8 @@ func _ready():
 	pass
 func load_things():
 	update_coin_text()
-	for i in range(radio_buttons.get_item_count()):
-		if not radio_buttons.is_item_disabled(i):
-			radio_buttons.set_item_disabled(i, true)
 	set_unlocked_skins()
-	print(Global.unlocked_skins)
+	print('load_things: Global.unlocked_skins\n',Global.unlocked_skins)
 
 func get_unlocked_skins():
 	var un_skins = []
@@ -32,6 +29,9 @@ func get_unlocked_skins():
 		if not radio_buttons.is_item_disabled(i):
 			un_skins.append(Global.skin_name[i])
 	Global.unlocked_skins = un_skins
+	Global.save_data()
+	Global.load_data()
+	print("get_unlocked_skins, Global.unlocked_skin: \n", Global.unlocked_skins)
 
 func set_unlocked_skins():
 	for i in range(radio_buttons.get_item_count()):
@@ -59,20 +59,20 @@ func _input(event):
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP or event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			dragging = true
 			$DragTimer.start()  # Timer 시작
-			print("mouse start")
+			#print("mouse start")
 	elif event is InputEventScreenDrag:
 		dragging = true
 		$DragTimer.start()  # Timer 시작
-		print("touch drag")
+		#print("touch drag")
 
 func _on_DragTimer_timeout():
 	dragging = false
-	print("end drag")
+	#print("end drag")
 
 func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 	# 마우스 휠이나 터치 드래그 시에는 함수를 실행하지 않는다.
 	if dragging:
-		print("on_list")
+		#print("on_list")
 		return
 
 	#open selectbox
