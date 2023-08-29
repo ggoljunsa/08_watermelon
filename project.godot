@@ -22,8 +22,8 @@ MenuTemplateManager="*res://addons/EasyMenus/Scripts/menu_template_manager.gd"
 
 [display]
 
-window/size/viewport_width=405
-window/size/viewport_height=720
+window/size/viewport_width=450
+window/size/viewport_height=800
 window/size/initial_position_type=2
 window/stretch/mode="canvas_items"
 window/handheld/orientation=1
@@ -34,7 +34,7 @@ project/assembly_name="08_watermelon"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/jangm/OneDrive - 대구경북과학기술원/workspace/games/Godot4/08_watermelon/K-001.avi"
+movie_writer/movie_file="D:/08_watermelon/export/K-001.avi"
 
 [editor_plugins]
 

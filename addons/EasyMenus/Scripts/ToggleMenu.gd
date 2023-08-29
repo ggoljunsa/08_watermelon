@@ -80,8 +80,10 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 	if radio_buttons.is_item_disabled(index) == false:
 		temp_skin_var = index
 		selectbox.get_node("VBoxContainer/HBoxContainer/Button_getskin").set_disabled(false)
+		selectbox.get_node("VBoxContainer/Label3").text = "해금된 스킨입니다."
 	else:
 		selectbox.get_node("VBoxContainer/HBoxContainer/Button_getskin").set_disabled(true)
+		selectbox.get_node("VBoxContainer/Label3").text = "아직 얻지 못한 스킨입니다."
 		pass
 	selectbox.show()
 	selectbox.get_node("VBoxContainer/Label").set_text(Global.skin_name[index])

@@ -28,11 +28,14 @@ var skin_name = ["기본 라오 스킨 01",
 				"초티지 스킨",
 				"에라라오 미호담당자 스킨",
 				"Milky 스킨",
-				"검정벽돌 뮤즈 스킨",
+				"주접 스킨(검정벽돌)",
 				"개발자 사팍콘 스킨",
 				"개발자 이과콘 스킨",
 				"검정벽돌 도트 스킨",
-				"아몬두만 스킨"]
+				"아몬두만 스킨",
+				"스틸라인 스킨",
+				"파이어김치 스킨"
+				]
 var skin_description = ["라스트오리진 캐릭터들이 있는 기본 스킨. 순서는 가슴 크기순입니다.",
 				"게임에 나온 그림들을 직접 그려줬습니다. 순서는 가슴 크기순입니다.",
 				"만메님의 허락을 받았습니다. 귀여운 시아와 게임을 즐길 수 있습니다.",
@@ -47,7 +50,9 @@ var skin_description = ["라스트오리진 캐릭터들이 있는 기본 스킨
 				"개발자가 발로 그린 사팍콘입니다. 스킨 개수를 채우고 싶어서 넣었습니다.",
 				"개발자가 윾갤콘을 파쿠리한 이과콘입니다. 스킨 개수를 채우고 싶어서 넣었습니다.",
 				"개발자의 그림 스승님의 도트 작업물입니다. 도트를 잘 찍습니다.",
-				"아몬두만 님의 스킨입니다."]
+				"아몬두만 님의 스킨입니다. 레모네이드 알파를 좋아하는 것 같습니",
+				"근육여캐의시대는온다님의 스킨입니다. 직접 그려주셔서 정말 고맙습니다.",
+				"오비탈 워처를 좋아하는 짤쟁이님의 스킨입니다."]
 var has_pressed_support_button = false
 var unlocked_skins = []
 
@@ -159,7 +164,7 @@ func load_coins():
 		print("No save file found, starting with 0 coins")
 
 func reset_data():
-	save_file.set_value("game_data", "coins", 1000)
+	save_file.set_value("game_data", "coins", 2000)
 	coins = save_file.get_value("game_data", "coins", 0)
 	#print("coins: ", coins)
 	save_file.set_value("game_data", "high_score", 0)

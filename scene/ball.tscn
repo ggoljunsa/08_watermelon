@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dh0dw26j2h7i5"]
+[gd_scene load_steps=16 format=3 uid="uid://dh0dw26j2h7i5"]
 
 [ext_resource type="Script" path="res://scene/ball.gd" id="1_qoxbv"]
 [ext_resource type="Shape2D" uid="uid://b2fdefwnlbmyg" path="res://scene/ball_collision.tres" id="2_la1c4"]
 [ext_resource type="Material" uid="uid://bcd411hymmsby" path="res://scene/ball.tres" id="3_0uh1v"]
 [ext_resource type="Shader" path="res://scene/ball.gdshader" id="3_hvxw2"]
-[ext_resource type="Texture2D" uid="uid://cac33pthhqd7i" path="res://res/skin/01_lastorigin/01_naen.png" id="5_1g2xk"]
+[ext_resource type="Texture2D" uid="uid://c3fj2pof7c85w" path="res://res/skin/12_southpark/science_008_1.png" id="5_cslyh"]
 [ext_resource type="AudioStream" uid="uid://bptvplu1kit7b" path="res://res/sound/ID15_snd_bubble.wav" id="6_nc717"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qj4if"]
@@ -108,6 +108,12 @@ _data = {
 "anim_small": SubResource("Animation_7ig13")
 }
 
+[sub_resource type="Gradient" id="Gradient_njm0q"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 0.0352941, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l1b0n"]
+gradient = SubResource("Gradient_njm0q")
+
 [node name="Ball" type="RigidBody2D"]
 mass = 2.0
 gravity_scale = 3.0
@@ -124,6 +130,7 @@ debug_color = Color(0.945098, 0, 0.603922, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("2_la1c4")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = ExtResource("3_0uh1v")
@@ -139,7 +146,7 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(50, 50)
-texture = ExtResource("5_1g2xk")
+texture = ExtResource("5_cslyh")
 expand_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -151,5 +158,9 @@ texture = SubResource("CompressedTexture2D_x8x6a")
 libraries = {
 "": SubResource("AnimationLibrary_r3l24")
 }
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = SubResource("GradientTexture1D_l1b0n")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

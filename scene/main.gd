@@ -170,3 +170,16 @@ func _on_gameover_menu_back_to_main_pressed():
 
 func cal_coin_socre(num):
 	return int(num/10)
+
+
+func _on_change_button_pressed():
+	if input_flag:
+		# 10점씩 깎는 대신, 현재 달려있는 오브젝트를 바꿀 수 있어요
+		#1. ball을 삭제한다
+		ball_delete()
+		#2. 새로운 ball을 만든다.
+		ball_generate(rand_generate(), $UI/Spot.position)
+	
+func ball_delete():
+	if instance != null:
+		instance.queue_free()

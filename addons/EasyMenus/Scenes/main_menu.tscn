@@ -1,11 +1,222 @@
-[gd_scene load_steps=6 format=3 uid="uid://dq6tvhqcy2aps"]
+[gd_scene load_steps=15 format=3 uid="uid://dq6tvhqcy2aps"]
 
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/main_menu_controller.gd" id="1_lbw7r"]
 [ext_resource type="FontVariation" uid="uid://dlrysp1mlomt" path="res://res/font/new_font_variation.tres" id="2_b2eah"]
 [ext_resource type="PackedScene" uid="uid://qlskttl1wjr7" path="res://addons/EasyMenus/Scenes/options_menu.tscn" id="2_pwqpr"]
+[ext_resource type="Texture2D" uid="uid://b61giiisne67h" path="res://res/background/marijoa_silky.png" id="2_xm6yd"]
 [ext_resource type="AudioStream" uid="uid://bipevpdyjo24a" path="res://res/sound/Water_Origin_final.mp3" id="3_11ppv"]
+[ext_resource type="Texture2D" uid="uid://c7uc7kuxh72ct" path="res://res/background/manmae.png" id="6_qvwc3"]
+[ext_resource type="Texture2D" uid="uid://dvwnroiej0hy4" path="res://res/background/wahihi.png" id="7_cslr0"]
+[ext_resource type="Texture2D" uid="uid://lnuxv4it8v0g" path="res://res/icon/WD56gRej_400x400.jpg" id="8_p3ujm"]
+[ext_resource type="Texture2D" uid="uid://h56mhfc6ylmy" path="res://res/background/ring.png" id="9_6nrsj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oeeg4"]
+
+[sub_resource type="Animation" id="Animation_0f60s"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/silky:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.145, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/silky:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.145, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Manmae:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Wahihi:skew")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Wahihi:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.138889, 0.138889)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Wahihi:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 200)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Wd56gRej400x400:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 104)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Ring:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_kq28s"]
+resource_name = "appear"
+
+[sub_resource type="Animation" id="Animation_ijsb5"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/silky:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.145, -0.25, 0, 0.25, 0, 0.145, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/silky:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.145, -0.25, 0, 0.25, 0, 0.145, -0.25, 0, 0.25, 0, 0.1, -0.25, 0, 0.25, 0, 0.145, -0.25, 0, 0.25, 0, 0.145, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.3, 1.6, 2)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Manmae:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 12.5664]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Wahihi:skew")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7, 0.8, 1.2, 1.3, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.308923, -0.308923, 0.0, -0.308923, 0.314159, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Wahihi:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 0.8, 1, 1.2, 1.3, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.138889, 0.138889), Vector2(0.138889, 0.113889), Vector2(0.138889, 0.150833), Vector2(0.138889, 0.150833), Vector2(0.138889, 0.138889), Vector2(0.138889, 0.113889), Vector2(0.138889, 0.150833), Vector2(0.138889, 0.181563), Vector2(0.138889, 0.138889)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Wahihi:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(64, 200), Vector2(64, 216), Vector2(64, 200), Vector2(64, 184)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Wd56gRej400x400:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(64, 104), Vector2(64, 96), Vector2(64, 104)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Ring:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(64, 48), Vector2(64, 40), Vector2(64, 48)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_77f7t"]
+_data = {
+"RESET": SubResource("Animation_0f60s"),
+"appear": SubResource("Animation_kq28s"),
+"idle": SubResource("Animation_ijsb5")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -26,16 +237,22 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.909804, 0.564706, 1)
 
+[node name="silky" type="Sprite2D" parent="Panel"]
+position = Vector2(336, 768)
+scale = Vector2(0.145, 0.145)
+texture = ExtResource("2_xm6yd")
+offset = Vector2(0, -800)
+
 [node name="Content" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -117.5
-offset_top = 67.0
-offset_right = 117.5
-offset_bottom = 328.0
+offset_left = -178.5
+offset_top = 64.0
+offset_right = 171.5
+offset_bottom = 668.0
 grow_horizontal = 2
 theme_override_constants/separation = 15
 metadata/_edit_group_ = true
@@ -108,9 +325,10 @@ horizontal_alignment = 1
 [node name="Label2" type="Label" parent="Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.494118, 0.494118, 0.494118, 1)
-text = "Version 1.0 b8
-07/17 build"
-horizontal_alignment = 1
+text = "Version 1.2 b12
+08/30 build
+add change 
+button!"
 
 [node name="OptionsMenu" parent="." instance=ExtResource("2_pwqpr")]
 unique_name_in_owner = true
@@ -121,6 +339,34 @@ layout_mode = 1
 stream = ExtResource("3_11ppv")
 autoplay = true
 bus = &"Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_77f7t")
+}
+
+[node name="Manmae" type="Sprite2D" parent="."]
+position = Vector2(368, 176)
+scale = Vector2(0.281095, 0.281095)
+texture = ExtResource("6_qvwc3")
+
+[node name="Wahihi" type="Sprite2D" parent="."]
+position = Vector2(64, 200)
+scale = Vector2(0.138889, 0.138889)
+texture = ExtResource("7_cslr0")
+
+[node name="Wd56gRej400x400" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.341176)
+position = Vector2(64, 104)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_p3ujm")
+
+[node name="Ring" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.596078)
+position = Vector2(64, 48)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_6nrsj")
 
 [connection signal="start_game_pressed" from="." to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="Content/StartGameButton" to="." method="_on_start_game_button_pressed"]

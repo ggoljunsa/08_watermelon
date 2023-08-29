@@ -20,6 +20,7 @@ func set_result_screen():
 	$Content/Coins.text = "Coins: " + str(Global.coins)
 
 func _on_retry_game_button_pressed():
+	Global.score = 0
 	close_gameover_menu()
 	emit_signal("restart_game_pressed")
 	pass # Replace with function body.

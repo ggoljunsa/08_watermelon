@@ -5,7 +5,7 @@ var ball_texture
 var ball_Area
 var ball_level = 0 
 var bojungchi = 300
-@export var ball_size = [0.08*bojungchi,0.102*bojungchi, 0.155*bojungchi, 0.209*bojungchi, 0.25*bojungchi,0.3*bojungchi, 0.418*bojungchi, 0.45*bojungchi, 0.5*bojungchi, 0.55*bojungchi, 0.6*405, 0.7*bojungchi]
+@export var ball_size = [0.08*bojungchi,0.102*bojungchi, 0.125*bojungchi, 0.155*bojungchi, 0.209*bojungchi, 0.25*bojungchi,0.3*bojungchi, 0.418*bojungchi, 0.45*bojungchi, 0.46*bojungchi, 0.48*bojungchi, 0.50*bojungchi, 0.55*bojungchi]
 @export var collision_radius = 1
 
 

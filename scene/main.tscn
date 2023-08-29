@@ -1,16 +1,22 @@
-[gd_scene load_steps=20 format=3 uid="uid://dhypcprpq0r6m"]
+[gd_scene load_steps=26 format=3 uid="uid://dhypcprpq0r6m"]
 
 [ext_resource type="Script" path="res://scene/main.gd" id="1_qajoh"]
 [ext_resource type="Script" path="res://scene/object.gd" id="2_8x0f3"]
 [ext_resource type="Shader" path="res://scene/background.gdshader" id="2_my1gd"]
 [ext_resource type="Script" path="res://scene/Label.gd" id="3_hlaks"]
 [ext_resource type="Texture2D" uid="uid://cl1dkrww0gykg" path="res://res/background/배경.png" id="3_okmy0"]
+[ext_resource type="Texture2D" uid="uid://botc3bv211sn" path="res://res/background/board (1).png" id="4_147fo"]
 [ext_resource type="Script" path="res://scene/PauseButton.gd" id="4_b1kr8"]
 [ext_resource type="AudioStream" uid="uid://bptvplu1kit7b" path="res://res/sound/ID15_snd_bubble.wav" id="4_budij"]
+[ext_resource type="Texture2D" uid="uid://b6vioj3bep64i" path="res://res/background/board (2).png" id="5_bhcc8"]
 [ext_resource type="PackedScene" uid="uid://rw7gdui8lu3n" path="res://addons/EasyMenus/Scenes/pause_menu.tscn" id="5_cuabr"]
 [ext_resource type="PackedScene" uid="uid://cpg6qo6jbi8eh" path="res://addons/EasyMenus/Scenes/gameover_menu.tscn" id="6_ev7k4"]
+[ext_resource type="Texture2D" uid="uid://bb2eh1eoju424" path="res://res/background/board (3).png" id="6_pwhmy"]
 [ext_resource type="Script" path="res://scene/GameOverArea2D.gd" id="7_ihoo5"]
+[ext_resource type="Texture2D" uid="uid://v0qkwbct1hq3" path="res://res/background/board (4).png" id="7_y4s7g"]
+[ext_resource type="Texture2D" uid="uid://coy5kt1tbx6yg" path="res://res/background/board (5).png" id="8_ajlak"]
 [ext_resource type="AudioStream" uid="uid://mnvrt6s8ejyj" path="res://res/sound/2.mp3" id="11_gapi0"]
+[ext_resource type="Theme" uid="uid://dp1xxx710usj3" path="res://addons/godot-idea-board/main_theme.tres" id="12_o10tt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kxnno"]
 shader = ExtResource("2_my1gd")
@@ -59,7 +65,7 @@ _data = {
 size = Vector2(648, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7p6c"]
-size = Vector2(19, 1161.5)
+size = Vector2(25.5, 1161.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8850"]
 size = Vector2(404, 22)
@@ -67,17 +73,53 @@ size = Vector2(404, 22)
 [node name="main" type="Node2D"]
 script = ExtResource("1_qajoh")
 
-[node name="Cafe" type="TextureRect" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 432.0
+offset_bottom = 728.0
+metadata/_edit_lock_ = true
+
+[node name="Cafe" type="TextureRect" parent="Control"]
 material = SubResource("ShaderMaterial_kxnno")
-offset_left = -16.0
+layout_mode = 0
+offset_left = -15.0
 offset_top = -8.0
-offset_right = 390.0
-offset_bottom = 634.462
+offset_right = 391.0
+offset_bottom = 699.0
 scale = Vector2(1.14365, 1.14365)
 texture = ExtResource("3_okmy0")
 expand_mode = 5
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Cafe2" type="TextureRect" parent="Control"]
+material = SubResource("ShaderMaterial_kxnno")
+layout_mode = 0
+offset_left = -15.0
+offset_top = -8.0
+offset_right = 391.0
+offset_bottom = 699.0
+scale = Vector2(1.14365, 1.14365)
+texture = ExtResource("3_okmy0")
+expand_mode = 5
+
+[node name="Board(1)" type="Sprite2D" parent="Control"]
+position = Vector2(344, 544)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("4_147fo")
+
+[node name="Board(2)" type="Sprite2D" parent="Control"]
+position = Vector2(104, 272)
+rotation = 0.213154
+scale = Vector2(0.143, 0.143)
+texture = ExtResource("5_bhcc8")
+
+[node name="Board(4)" type="Sprite2D" parent="Control"]
+position = Vector2(336, 232)
+scale = Vector2(0.134, 0.134)
+texture = ExtResource("7_y4s7g")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
 color = Color(0, 0.6, 0.388235, 1)
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -99,6 +141,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="change_button" type="Button" parent="UI/UpperboxControl/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("12_o10tt")
+text = "      "
+
+[node name="Board(3)" type="Sprite2D" parent="UI/UpperboxControl/HBoxContainer/change_button"]
+modulate = Color(0.480469, 0.382813, 0.273438, 1)
+position = Vector2(35, 34)
+scale = Vector2(0.05225, 0.05225)
+texture = ExtResource("6_pwhmy")
+
 [node name="Label" type="Label" parent="UI/UpperboxControl/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -110,6 +163,11 @@ script = ExtResource("3_hlaks")
 libraries = {
 "": SubResource("AnimationLibrary_lst0k")
 }
+
+[node name="Board(5)" type="TextureRect" parent="UI/UpperboxControl/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_ajlak")
+expand_mode = 2
 
 [node name="PauseButton" type="Button" parent="UI/UpperboxControl/HBoxContainer"]
 layout_mode = 2
@@ -148,7 +206,7 @@ position = Vector2(324, 576)
 physics_material_override = SubResource("PhysicsMaterial_l8aet")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier"]
-position = Vector2(-111, 146)
+position = Vector2(-108, 224)
 shape = SubResource("RectangleShape2D_rssva")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Barrier"]
@@ -156,7 +214,7 @@ position = Vector2(-336, -213)
 shape = SubResource("RectangleShape2D_u7p6c")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Barrier"]
-position = Vector2(93, -212)
+position = Vector2(135.25, -208)
 shape = SubResource("RectangleShape2D_u7p6c")
 
 [node name="GameOverArea2D" type="Area2D" parent="."]
@@ -164,7 +222,7 @@ position = Vector2(0, -480)
 script = ExtResource("7_ihoo5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea2D"]
-position = Vector2(200, 624)
+position = Vector2(214, 587)
 shape = SubResource("RectangleShape2D_c8850")
 debug_color = Color(0.541176, 0.407843, 1, 0.419608)
 
@@ -177,8 +235,10 @@ default_color = Color(0.988235, 0.988235, 0.988235, 1)
 [node name="object" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 48.0
+offset_bottom = 64.0
 script = ExtResource("2_8x0f3")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -186,10 +246,13 @@ stream = ExtResource("4_budij")
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_gapi0")
+autoplay = true
+bus = &"Music"
 
 [connection signal="detect_ball" from="." to="object" method="_on_main_detect_ball"]
 [connection signal="merge_sound" from="." to="." method="play_sound"]
 [connection signal="update_score" from="." to="." method="_on_update_score"]
+[connection signal="pressed" from="UI/UpperboxControl/HBoxContainer/change_button" to="." method="_on_change_button_pressed"]
 [connection signal="back_to_main_pressed" from="UI/PauseMenu" to="." method="_on_pause_menu_back_to_main_pressed"]
 [connection signal="back_to_main_pressed" from="UI/GameoverMenu" to="." method="_on_gameover_menu_back_to_main_pressed"]
 [connection signal="gameover" from="GameOverArea2D" to="." method="_on_game_over_area_2d_gameover"]

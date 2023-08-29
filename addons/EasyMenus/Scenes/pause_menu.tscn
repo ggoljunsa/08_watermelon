@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://rw7gdui8lu3n"]
+[gd_scene load_steps=23 format=3 uid="uid://rw7gdui8lu3n"]
 
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/pause_menu_controller.gd" id="1_5etq0"]
 [ext_resource type="PackedScene" uid="uid://qlskttl1wjr7" path="res://addons/EasyMenus/Scenes/options_menu.tscn" id="2_ejh0f"]
@@ -19,7 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://cgo36e2bj27im" path="res://res/icon/science_033.png" id="16_8ky52"]
 [ext_resource type="Texture2D" uid="uid://b4pqpjy8dd6ai" path="res://res/icon/logo_black_sprite.png" id="17_6jpgf"]
 [ext_resource type="Texture2D" uid="uid://6dbj5eupqmpg" path="res://res/icon/logo_amond.jpg" id="18_8ob72"]
+[ext_resource type="Texture2D" uid="uid://bloty62svcakg" path="res://res/skin/16_silky/001.png" id="19_fvrdt"]
 [ext_resource type="PackedScene" uid="uid://jsta0dvwkg5q" path="res://scene/select_box.tscn" id="20_4lndc"]
+[ext_resource type="Texture2D" uid="uid://borgulrrm5knx" path="res://res/icon/1 (2).jpg" id="20_xftcn"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -131,11 +133,14 @@ offset_bottom = 720.0
 grow_horizontal = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ToggleMenu"]
-layout_mode = 2
-anchor_right = 1.007
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 0.164978
-offset_bottom = -608.0
+offset_right = -0.100006
+offset_bottom = -696.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="ToggleMenu/VBoxContainer"]
@@ -154,9 +159,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
 offset_top = 104.0
-offset_right = 3.0
-offset_bottom = -192.0
+offset_right = 1.89999
+offset_bottom = -272.0
 grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
@@ -167,8 +173,9 @@ layout_mode = 2
 [node name="ItemList" type="ItemList" parent="ToggleMenu/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-item_count = 15
-max_columns = 4
+item_count = 17
+max_columns = 5
+same_column_width = true
 item_0/text = ""
 item_0/icon = ExtResource("4_6y4v8")
 item_0/disabled = true
@@ -214,6 +221,12 @@ item_13/disabled = true
 item_14/text = ""
 item_14/icon = ExtResource("18_8ob72")
 item_14/disabled = true
+item_15/text = ""
+item_15/icon = ExtResource("19_fvrdt")
+item_15/disabled = true
+item_16/text = ""
+item_16/icon = ExtResource("20_xftcn")
+item_16/disabled = true
 script = ExtResource("7_r35mf")
 
 [node name="Label" type="Label" parent="ToggleMenu/ScrollContainer/VBoxContainer"]
@@ -225,10 +238,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.007
 anchor_bottom = 1.0
-offset_left = 24.0
+offset_left = 23.1
 offset_top = 520.0
-offset_right = -33.835
-offset_bottom = -30.0
+offset_right = -35.1437
+offset_bottom = -176.0
 
 [node name="Label3" type="Label" parent="ToggleMenu/VBoxContainer2"]
 layout_mode = 2
@@ -241,8 +254,19 @@ layout_mode = 2
 text = "Press Gacha to unlock the skin"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 1
 
-[node name="GachaButton" type="Button" parent="ToggleMenu/VBoxContainer2"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="ToggleMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 704.0
+offset_right = -0.100006
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GachaButton" type="Button" parent="ToggleMenu/VBoxContainer3"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -250,7 +274,7 @@ size_flags_vertical = 8
 theme_override_font_sizes/font_size = 25
 text = "Gacha!"
 
-[node name="BackButton" type="Button" parent="ToggleMenu/VBoxContainer2"]
+[node name="BackButton" type="Button" parent="ToggleMenu/VBoxContainer3"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -301,8 +325,8 @@ one_shot = true
 [connection signal="item_activated" from="ToggleMenu/ScrollContainer/VBoxContainer/ItemList" to="ToggleMenu" method="_on_item_list_item_activated"]
 [connection signal="item_clicked" from="ToggleMenu/ScrollContainer/VBoxContainer/ItemList" to="ToggleMenu" method="_on_item_list_item_clicked"]
 [connection signal="item_selected" from="ToggleMenu/ScrollContainer/VBoxContainer/ItemList" to="ToggleMenu" method="_on_item_list_item_selected"]
-[connection signal="pressed" from="ToggleMenu/VBoxContainer2/GachaButton" to="ToggleMenu" method="_on_gacha_button_pressed"]
-[connection signal="pressed" from="ToggleMenu/VBoxContainer2/BackButton" to="ToggleMenu" method="go_back"]
+[connection signal="pressed" from="ToggleMenu/VBoxContainer3/GachaButton" to="ToggleMenu" method="_on_gacha_button_pressed"]
+[connection signal="pressed" from="ToggleMenu/VBoxContainer3/BackButton" to="ToggleMenu" method="go_back"]
 [connection signal="get_skin" from="ToggleMenu/SelectBox" to="ToggleMenu" method="_on_select_box_get_skin"]
 [connection signal="timeout" from="ToggleMenu/DragTimer" to="ToggleMenu" method="_on_DragTimer_timeout"]
 
