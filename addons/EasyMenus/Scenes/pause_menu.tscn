@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://6dbj5eupqmpg" path="res://res/icon/logo_amond.jpg" id="18_8ob72"]
 [ext_resource type="Texture2D" uid="uid://bloty62svcakg" path="res://res/skin/16_silky/001.png" id="19_fvrdt"]
 [ext_resource type="PackedScene" uid="uid://jsta0dvwkg5q" path="res://scene/select_box.tscn" id="20_4lndc"]
-[ext_resource type="Texture2D" uid="uid://borgulrrm5knx" path="res://res/icon/1 (2).jpg" id="20_xftcn"]
+[ext_resource type="Texture2D" uid="uid://b1usx5qjktvkr" path="res://res/skin/17_firekimchi/얼굴2.png" id="20_g8nwo"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -98,6 +98,7 @@ theme_override_font_sizes/font_size = 30
 text = "Quit"
 
 [node name="ResetButton" type="Button" parent="Content"]
+visible = false
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -225,7 +226,7 @@ item_15/text = ""
 item_15/icon = ExtResource("19_fvrdt")
 item_15/disabled = true
 item_16/text = ""
-item_16/icon = ExtResource("20_xftcn")
+item_16/icon = ExtResource("20_g8nwo")
 item_16/disabled = true
 script = ExtResource("7_r35mf")
 

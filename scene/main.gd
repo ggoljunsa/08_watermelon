@@ -14,6 +14,7 @@ func _ready():
 	var togglemenu_node = get_node("UI/PauseMenu/ToggleMenu")
 	#print("togglemenu_node", togglemenu_node)
 	togglemenu_node.connect("skin_changed", change_skin)
+	Global.score = 0
 
 func change_skin():
 	print("main_change_skin")

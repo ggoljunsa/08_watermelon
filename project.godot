@@ -24,7 +24,6 @@ MenuTemplateManager="*res://addons/EasyMenus/Scripts/menu_template_manager.gd"
 
 window/size/viewport_width=450
 window/size/viewport_height=800
-window/size/initial_position_type=2
 window/stretch/mode="canvas_items"
 window/handheld/orientation=1
 

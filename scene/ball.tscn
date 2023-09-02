@@ -160,6 +160,7 @@ libraries = {
 }
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 shadow_enabled = true
 texture = SubResource("GradientTexture1D_l1b0n")
 
